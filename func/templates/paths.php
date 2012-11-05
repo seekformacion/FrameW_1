@@ -6,6 +6,11 @@ function get_path($tipo,$ext,$objeto){global $v;
 
 if( strlen( str_replace("/",'',$objeto) ) < strlen($objeto) ){$objetos=explode('/',$objeto); $folder=$objetos[0]; $objeto=$objetos[1];$objeto="$folder/$objeto";};
 
+
+if($tipo=="func"){
+$donde=$v[path][fw] . "/func/" . $objeto . ".$ext";
+if (file_exists($donde)) {$ruta=$donde;}
+}
  
 $donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
 if (file_exists($donde)) {$ruta=$donde;}
@@ -29,7 +34,13 @@ return $ruta;
 }
 
 
+function includeFUNC($func){global $v;
 
+$ruta=get_path('func', 'php', $func);
+
+require_once $ruta;
+	
+}
 
 
 function loadChild($tipo,$objeto){global $v;
