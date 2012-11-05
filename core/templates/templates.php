@@ -14,7 +14,7 @@ return $lineas;
 function splitsheet($file,$obj,$valores,$recursividad){
 $queprincipio="<!-- $obj -->";
 $quefin="<!-- fin $obj -->";
-
+ 											
 $valores[enlacescaut]="";#enlacescaut();
 
 
@@ -24,7 +24,7 @@ foreach($file as $line){
 $line=str_replace("\n","",$line);
 $line=str_replace("\r","",$line);
 $line=trim($line);
-
+											
 
 if($line == $quefin){$agrupo=0;};
 if ($agrupo){
@@ -41,7 +41,7 @@ if ($agrupo){
 
 
 }
-if($line == $queprincipio){$agrupo=1;};
+if($line == $queprincipio){$agrupo=1;  };
 
 }
 
