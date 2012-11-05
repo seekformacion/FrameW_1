@@ -1,53 +1,6 @@
 <?php
 
 
-function get_path($tipo,$ext,$objeto){global $v;
-
-$donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;}
-
-$donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v[where][view] . "/allids" ."/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;}
-
-$donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v[where][view] . "/ID" . $v[where][id] . "/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;} 
-
-
-
-$donde=$v[path][bin] . "/" . $v[where][site] . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;}
-
-$donde=$v[path][bin] . "/" . $v[where][site] . "/" . $tipo . "/" . $ext . "/" . $v[where][view] . "/allids" ."/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;}
-
-$donde=$v[path][bin] . "/" . $v[where][site] . "/" . $tipo . "/" . $ext . "/" . $v[where][view] . "/ID" . $v[where][id] . "/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;} 
-
-
-
-return $ruta;
-	
-}
-
-
-
-function loadChild($tipo,$objeto){global $v;
-
-$rutaPHP=get_path($tipo,'php',$objeto);	$valoresDBUG[rutas] .="<p>$rutaPHP</p>";
-require_once $rutaPHP;
-
-$rutaHTML=get_path($tipo,'html',$objeto); $valoresDBUG[rutas] .="<p>$rutaHTML</p>";
-$html=splitsheet(read_layout($rutaHTML),$objeto,$valores,$recursividad); $valoresDBUG[html]=$html;
-
-
-
-if($v[debug]>0){$html=splitsheet(read_layout(get_path('objt','html','bloque-debug')),'bloque',$valoresDBUG,$recursividad,''); $valoresDBUG[html]=$html;}
-
-	
-return $html;	
-	
-}
-
 
 ################## funcion apertura de archivos ##########
 function read_layout($donde){
