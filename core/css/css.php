@@ -64,8 +64,8 @@ $v[dataCSSfinal][B][$nomfFinal][stlname]=$stl;
 
 
 foreach ($v[dataCSSfinal] as $res => $nombres) {foreach ($nombres as $nombre => $valores){
-	
-$ruta="/$nombre.css";
+$sub="";if($res != "all"){$sub="/$res";};	
+$ruta="$sub/$nombre.css";
 
 if($v[conf][state]==1){$basePATH=$v[path][l_css];$stl=$nombre;};
 if($v[conf][state]==2){$basePATH=$v[path][c_css];$stl=$valores[stlname];};
