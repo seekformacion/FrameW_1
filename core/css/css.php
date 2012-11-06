@@ -3,64 +3,58 @@
 
 
 function createCSS(){global $v;
-includeCORE('files/files');
+
 
 
 ##########modo test
 if($v[conf][state]==1){
-foreach ($v[css] as $res => $css) {foreach ($css as $point => $ruta){
-	
-if($res=="all"){$res="";};
-$contenidoCSS=read_FILE($ruta);
 
-$rutaparcial=str_replace($v[path][bin],'', $ruta);
-$quitos=array('allsites','/objt','/css/',$v[where][site]);
-$rutaparcial=str_replace($quitos,'', $rutaparcial);
-if($v[debug]>=3){$v[debugCSS][]="$rutaparcial --> $ruta";};
 
-$donde=$v[path][httpd] . $v[path][l_css] . $rutaparcial;	
-write_FILE($donde,$contenidoCSS);
-$v[css][urls][$res][]=$v[path][l_css] . $rutaparcial;
-
-$stls=explode('/',$rutaparcial);$num=count($stls)-1;$stl=str_replace('.','_',$stls[$num]);
-if($res=="A"){$cunta++;$v[recusi][A] .='$(\'#stl_' . $stl . "[rel=stylesheet]').attr('href', '" . $v[path][l_css] . $rutaparcial . "'); ";};
-if($res=="B"){$cuntb++;$v[recusi][B] .='$(\'#stl_' . $stl . "[rel=stylesheet]').attr('href', '" . $v[path][l_css] . $rutaparcial . "'); ";};
-}}
+$v[dataCSSfinal]=$v[dataCSS];
 	
 }	
 ##########modo test
 
 
+
+
 ##########modo produccion
 if($v[conf][state]==2){
-foreach ($v[css] as $res => $css) {foreach ($css as $point => $ruta){
-	
-if($res=="all"){$res="";};
-$contenidoCSS[$res].= read_FILE($ruta);
-
-$rutaparcial=str_replace($v[path][bin],'', $ruta);
-$quitos=array('allsites','/objt','/css/',$v[where][site]);
-$rutaparcial=str_replace($quitos,'', $rutaparcial);
-$rutasparciales[$res] .=$rutaparcial;
-if($v[debug]>=3){$v[debug][css][]="$rutaparcial --> $ruta";};
-
-}}
-
-foreach ($rutasparciales as $res => $rutaparcial) {
-$sub="";	
-if($res != ""){$sub="$res/";};	
-$donde=$v[path][httpd] . $v[path][c_css] . "/$sub" . md5($rutaparcial) . ".css";
-
-write_FILE($donde,$contenidoCSS[$res]);
-$v[css][urls][$res][]=$v[path][c_css] . "/$sub" . md5($rutaparcial) . ".css";
-$v[recusi][$res]=$v[path][c_css] . "/$sub" . md5($rutaparcial) . ".css";
-if($res=="A"){$v[recusiSTL]=md5($rutaparcial) . "_css";};
 
 
+$nomfFinal="";$html="";
+foreach ($v[dataCSS][all] as $nomfile => $valores) {
+$nomfFinal .=$valores[path] . $nomfile;	
+$html .=$valores[html];	
 }
+$nomfFinal=md5($nomfFinal);
+$v[dataCSSfinal][all][$nomfFinal][path]=$v[path][c_css];
+$v[dataCSSfinal][all][$nomfFinal][html]=$html;
+
+
 	
+	
+$nomfFinal="";$html="";	
+foreach ($v[dataCSS][A] as $nomfile => $valores) {
+$nomfFinal .=$valores[path] . $nomfile;	
+$html .=$valores[html];	
+}
+$nomfFinal=md5($nomfFinal);$stl=$nomfFinal;
+$v[dataCSSfinal][A][$nomfFinal][path]=$v[path][c_css];
+$v[dataCSSfinal][A][$nomfFinal][html]=$html;
+$v[dataCSSfinal][A][$nomfFinal][stl]=1;
+$v[dataCSSfinal][A][$nomfFinal][stlname]=$stl;
 
 
+$nomfFinal="";$html="";
+foreach ($v[dataCSS][B] as $nomfile => $valores) {
+$nomfFinal .=$valores[path] . $nomfile;	
+$html .=$valores[html];	
+}
+$nomfFinal=md5($nomfFinal);
+$v[dataCSSfinal][B][$nomfFinal][path]=$v[path][c_css];
+$v[dataCSSfinal][B][$nomfFinal][html]=$html;
+$v[dataCSSfinal][B][$nomfFinal][stlname]=$stl;
 
 
 
@@ -69,8 +63,33 @@ if($res=="A"){$v[recusiSTL]=md5($rutaparcial) . "_css";};
 ##########modo produccion
 
 
+foreach ($v[dataCSSfinal] as $res => $nombres) {foreach ($nombres as $nombre => $valores){
+	
+$ruta="/$nombre.css";
+
+if($v[conf][state]==1){$basePATH=$v[path][l_css];$stl=$nombre;};
+if($v[conf][state]==2){$basePATH=$v[path][c_css];$stl=$valores[stlname];};
+	
+write_FILE($v[path][httpd] . $basePATH . $ruta, $valores[html]);
+
+if($res != "B"){
+if($valores[stl])	{$v[linksCSS] .="<link rel='stylesheet' type='text/css' href='" . $v[path][baseURLskin][$v[conf][mode]] . $basePATH . $ruta . "' id='stl_" . $nombre . "' /> \n";}else
+					{$v[linksCSS] .="<link rel='stylesheet' type='text/css' href='" . $v[path][baseURLskin][$v[conf][mode]] . $basePATH . $ruta . "' /> \n";};
+}
+
+
+########### codigo a reemplazar en js
+if($res=="B"){$v[JSpostPROCESS]['%B%'] .=	"$('#stl_" . $stl . "[rel=stylesheet]').attr('href', '" . $v[path][baseURLskin][$v[conf][mode]] . $basePATH . $ruta . "'); \n";};
+if($res=="A"){$v[JSpostPROCESS]['%A%'] .=	"$('#stl_" . $stl . "[rel=stylesheet]').attr('href', '" . $v[path][baseURLskin][$v[conf][mode]] . $basePATH . $ruta . "'); \n";};	
+########### codigo a reemplazar en js
 
 	
+}}
+
+
+
+
+#print_r($v[dataCSSfinal]);	
 }
 
 

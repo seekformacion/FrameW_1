@@ -99,32 +99,62 @@ return $ruta;
 
 
 
+function splitRUTA($ruta){global $v;
+$rutas[fpath]=$ruta;
+$valores=explode('/',$ruta); $num=count($valores)-1;
+$file=$valores[$num];
+$files=explode('.',$file);
+$rutas[nom]=$files[0];
+$path=str_replace("/" . $file,'', $ruta);	
+$path=str_replace($v[path][bin],'', $path);$path=str_replace($v[path][fw],'', $path);
+$rutas[path]=$path;
+
+return $rutas;	
+}
+
 
 
 
 
 function loadCSS($tipo,$objeto){global $v;
-
+includeCORE('files/files');
 $rutas=get_pathCSS($tipo,$objeto);	 #$valoresDBUG[rutas] .="<p>$rutas</p>";	
-if($rutas){$v[css][all][]=$rutas;};
+
+if($rutas){
+$files=splitRUTA($rutas);
+$v[dataCSS][all][$files[nom]][path]=$files[path];
+$v[dataCSS][all][$files[nom]][html]=read_FILE($files[fpath]);
+}
+
 
 foreach ($v[conf][resolution] as $res => $value) {
 $rutas=get_pathCSS($tipo,"$res/" . $objeto);	
-if($rutas){$v[css][$res][]=$rutas;};
+		if($rutas){
+		$files=splitRUTA($rutas);
+		$v[dataCSS][$res][$files[nom]][path]=$files[path];
+		$v[dataCSS][$res][$files[nom]][html]=read_FILE($files[fpath]);
+		if($res=="A"){$v[dataCSS][$res][$files[nom]][stl]=1;};
+		}
 }
 
 
-#if($v[debug]>0){$html=splitsheet(read_layout(get_path('objt','html','debug/bloque')),'bloque',$valoresDBUG,$recursividad,''); $valoresDBUG[html]=$html;}
 }
+
+
+
 
 function loadJS($tipo,$objeto){global $v;
 
-$rutas=get_pathJS($tipo,$objeto);	 #$valoresDBUG[rutas] .="<p>$rutas</p>";
-	
-if($rutas){$v[js][]=$rutas;};
+includeCORE('files/files');
+$rutas=get_pathJS($tipo,$objeto);	 #$valoresDBUG[rutas] .="<p>$rutas</p>";	
+
+if($rutas){
+$files=splitRUTA($rutas);
+$v[dataJS][all][$files[nom]][path]=$files[path];
+$v[dataJS][all][$files[nom]][html]=read_FILE($files[fpath]);
+}
 
 
-#if($v[debug]>0){$html=splitsheet(read_layout(get_path('objt','html','debug/bloque')),'bloque',$valoresDBUG,$recursividad,''); $valoresDBUG[html]=$html;}
 }
 
 
