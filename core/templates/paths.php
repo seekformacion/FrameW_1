@@ -8,11 +8,11 @@ if( strlen( str_replace("/",'',$objeto) ) < strlen($objeto) ){$objetos=explode('
 
 
 $donde=$v[path][fw] . "/$tipo/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;}; #echo "$donde <br>";
+if (file_exists($donde)) {$ruta=$donde;}; 
 
  
 $donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;} #echo "$donde <br>";
+if (file_exists($donde)) {$ruta=$donde;} 
 $donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v[where][view] . "/allids" ."/" . $objeto . ".$ext";
 if (file_exists($donde)) {$ruta=$donde;}
 $donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v[where][view] . "/ID" . $v[where][id] . "/" . $objeto . ".$ext";
@@ -172,6 +172,14 @@ require_once $ruta;
 function includeFUNC($func){global $v;
 
 $ruta=get_path('func', 'php', $func);
+
+require_once $ruta;
+	
+}
+
+function includeINIT($func){global $v;
+
+$ruta=get_path('init', 'php', $func);
 
 require_once $ruta;
 	
