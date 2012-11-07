@@ -12,8 +12,14 @@ return $lineas;
 
 
 function write_FILE($donde,$content){
-if(md5_file($donde)!=md5($content))	{
+$doit=0;
+
+if(file_exists($donde)){
 	
+	if(md5_file($donde)!=md5($content)){$doit=1;}	
+
+}else{
+
 	$carpetas=explode('/',$donde); $cuantos=count($carpetas)-1;	
 	$dir=str_replace("/" . $carpetas[$cuantos],'',$donde);
 	$carpetas=explode('/',$dir);
@@ -22,12 +28,18 @@ if(md5_file($donde)!=md5($content))	{
 		foreach($carpetas as $point => $dir){if($dir){
 			$dir2=$dir2 . "/" . $dir;
 			if (!is_dir($dir2)){mkdir($dir2);}
-	}}
+	}}	
 	
-	
+$doit=1;	
+}
+
+
+	if($doit>0){
 	LOCALwFILE($donde,$content);	
 	CLOUDwFILE($donde,$content);			
-}
+	}
+
+
 }
 
 
