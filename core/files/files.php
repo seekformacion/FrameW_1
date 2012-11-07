@@ -1,6 +1,7 @@
 <?php
 
 function read_FILE($donde){
+$lineas="";	
 $fp = fopen($donde, "r");
 if($fp){while(!feof($fp)){$lineas.= fgets($fp);};	fclose($fp);};	
 return $lineas;	

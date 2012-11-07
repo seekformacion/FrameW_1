@@ -12,10 +12,12 @@ return $lineas;
 
 
 function splitsheet($file,$obj,$valores,$recursividad){
+$agrupo="";	$html="";
+	
 $queprincipio="<!-- $obj -->";
 $quefin="<!-- fin $obj -->";
  											
-$valores[enlacescaut]="";#enlacescaut();
+$valores['enlacescaut']="";#enlacescaut();
 
 
 

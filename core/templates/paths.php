@@ -2,32 +2,32 @@
 
 
 function get_path($tipo,$ext,$objeto){global $v;
-
+$ruta="";
 
 if( strlen( str_replace("/",'',$objeto) ) < strlen($objeto) ){$objetos=explode('/',$objeto); $folder=$objetos[0]; $objeto=$objetos[1];$objeto="$folder/$objeto";};
 
 
-$donde=$v[path][fw] . "/$tipo/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;}; 
+$donde=$v['path']['fw'] . "/$tipo/" . $objeto . ".$ext";
+if (file_exists($donde)) {$ruta=$donde;};
 
  
-$donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
+$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
 if (file_exists($donde)) {$ruta=$donde;} 
-$donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v[where][view] . "/allids" ."/" . $objeto . ".$ext";
+$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".$ext";
 if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v[where][view] . "/ID" . $v[where][id] . "/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;} 
-
-
-$donde=$v[path][bin] . "/" . $v[where][site] . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v[path][bin] . "/" . $v[where][site] . "/" . $tipo . "/" . $ext . "/" . $v[where][view] . "/allids" ."/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v[path][bin] . "/" . $v[where][site] . "/" . $tipo . "/" . $ext . "/" . $v[where][view] . "/ID" . $v[where][id] . "/" . $objeto . ".$ext";
+$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".$ext";
 if (file_exists($donde)) {$ruta=$donde;} 
 
 
-if($v[debug]>=4){echo "$ruta<br>"; };
+$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
+if (file_exists($donde)) {$ruta=$donde;}
+$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".$ext";
+if (file_exists($donde)) {$ruta=$donde;}
+$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".$ext";
+if (file_exists($donde)) {$ruta=$donde;} 
+
+
+if($v['debug']>=4){echo "$ruta<br>"; };
 return $ruta;
 
 }
@@ -36,63 +36,63 @@ return $ruta;
 
 
 function get_pathCSS($tipo,$objeto){global $v;
-
+$ruta="";
 
 if( strlen( str_replace("/",'',$objeto) ) < strlen($objeto) ){$objetos=explode('/',$objeto); $folder=$objetos[0]; $objeto=$objetos[1];$objeto="$folder/$objeto";};
 
 
-$donde=$v[path][fw] . "/$tipo/" . $objeto . ".css";
+$donde=$v['path']['fw'] . "/$tipo/" . $objeto . ".css";
 if (file_exists($donde)) {$ruta=$donde;}
 
  
-$donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/css/allviews/" . $objeto . ".css";
-if (file_exists($donde)) {$ruta=$donde;}; #echo "$donde <br>";
-$donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/css/" . $v[where][view] . "/allids" ."/" . $objeto . ".css";
+$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/css/allviews/" . $objeto . ".css";
+if (file_exists($donde)) {$ruta=$donde;};
+$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/css/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".css";
 if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/css/" . $v[where][view] . "/ID" . $v[where][id] . "/" . $objeto . ".css";
+$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/css/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".css";
 if (file_exists($donde)) {$ruta=$donde;} 
 
 
-$donde=$v[path][bin] . "/" . $v[where][site] . "/" . $tipo . "/css/allviews/" . $objeto . ".css";
+$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/css/allviews/" . $objeto . ".css";
 if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v[path][bin] . "/" . $v[where][site] . "/" . $tipo . "/css/" . $v[where][view] . "/allids" ."/" . $objeto . ".css";
+$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/css/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".css";
 if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v[path][bin] . "/" . $v[where][site] . "/" . $tipo . "/css/" . $v[where][view] . "/ID" . $v[where][id] . "/" . $objeto . ".css";
+$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/css/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".css";
 if (file_exists($donde)) {$ruta=$donde;} 
 
-
-return $ruta;
+if($v['debug']>3){echo "$ruta <br>\n";};
+return $ruta;   
 
 }
 
 
 
 function get_pathJS($tipo,$objeto){global $v;
-
+$ruta="";
 
 if( strlen( str_replace("/",'',$objeto) ) < strlen($objeto) ){$objetos=explode('/',$objeto); $folder=$objetos[0]; $objeto=$objetos[1];$objeto="$folder/$objeto";};
 
 
-$donde=$v[path][fw] . "/$tipo/" . $objeto . ".js";
+$donde=$v['path']['fw'] . "/$tipo/" . $objeto . ".js";
 if (file_exists($donde)) {$ruta=$donde;}
 
  
-$donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/js/allviews/" . $objeto . ".js";
+$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/js/allviews/" . $objeto . ".js";
 if (file_exists($donde)) {$ruta=$donde;}; #echo "$donde <br>";
-$donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/js/" . $v[where][view] . "/allids" ."/" . $objeto . ".js";
+$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/js/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".js";
 if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v[path][bin] . "/" . "allsites" . "/" . $tipo . "/js/" . $v[where][view] . "/ID" . $v[where][id] . "/" . $objeto . ".js";
+$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/js/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".js";
 if (file_exists($donde)) {$ruta=$donde;} 
 
 
-$donde=$v[path][bin] . "/" . $v[where][site] . "/" . $tipo . "/js/allviews/" . $objeto . ".js";
+$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/js/allviews/" . $objeto . ".js";
 if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v[path][bin] . "/" . $v[where][site] . "/" . $tipo . "/js/" . $v[where][view] . "/allids" ."/" . $objeto . ".js";
+$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/js/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".js";
 if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v[path][bin] . "/" . $v[where][site] . "/" . $tipo . "/js/" . $v[where][view] . "/ID" . $v[where][id] . "/" . $objeto . ".js";
+$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/js/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".js";
 if (file_exists($donde)) {$ruta=$donde;} 
 
-if($v[debug]>=4){echo "$ruta<br>"; };
+if($v['debug']>=4){echo "$ruta<br>"; };
 return $ruta;
 
 }
@@ -100,14 +100,15 @@ return $ruta;
 
 
 function splitRUTA($ruta){global $v;
-$rutas[fpath]=$ruta;
+$rutas['fpath']=$ruta;
 $valores=explode('/',$ruta); $num=count($valores)-1;
 $file=$valores[$num];
 $files=explode('.',$file);
-$rutas[nom]=$files[0];
+$rutas['nom']=$files[0];
 $path=str_replace("/" . $file,'', $ruta);	
-$path=str_replace($v[path][bin],'', $path);$path=str_replace($v[path][fw],'', $path);
-$rutas[path]=$path;
+$path=str_replace($v['path']['bin'],'', $path);$path=str_replace($v['path']['fw'],'', $path);
+$rutas['path']=$path;
+
 
 return $rutas;	
 }
@@ -122,18 +123,19 @@ $rutas=get_pathCSS($tipo,$objeto);	 #$valoresDBUG[rutas] .="<p>$rutas</p>";
 
 if($rutas){
 $files=splitRUTA($rutas);
-$v[dataCSS][all][$files[nom]][path]=$files[path];
-$v[dataCSS][all][$files[nom]][html]=read_FILE($files[fpath]);
+$v['dataCSS']['all'][$files['nom']]['path']=$files['path'];
+$v['dataCSS']['all'][$files['nom']]['html']=read_FILE($files['fpath']);
+$v['dataCSS']['all'][$files['nom']]['stl']=0;
 }
 
 
-foreach ($v[conf][resolution] as $res => $value) {
+foreach ($v['conf']['resolution'] as $res => $value) {
 $rutas=get_pathCSS($tipo,"$res/" . $objeto);	
 		if($rutas){
 		$files=splitRUTA($rutas);
-		$v[dataCSS][$res][$files[nom]][path]=$files[path];
-		$v[dataCSS][$res][$files[nom]][html]=read_FILE($files[fpath]);
-		if($res=="A"){$v[dataCSS][$res][$files[nom]][stl]=1;};
+		$v['dataCSS'][$res][$files['nom']]['path']=$files['path'];
+		$v['dataCSS'][$res][$files['nom']]['html']=read_FILE($files['fpath']);
+		if($res=="A"){$v['dataCSS'][$res][$files['nom']]['stl']=1;}else{$v['dataCSS'][$res][$files['nom']]['stl']=0;};
 		}
 }
 
@@ -150,8 +152,8 @@ $rutas=get_pathJS($tipo,$objeto);	 #$valoresDBUG[rutas] .="<p>$rutas</p>";
 
 if($rutas){
 $files=splitRUTA($rutas);
-$v[dataJS][all][$files[nom]][path]=$files[path];
-$v[dataJS][all][$files[nom]][html]=read_FILE($files[fpath]);
+$v['dataJS']['all'][$files['nom']]['path']=$files['path'];
+$v['dataJS']['all'][$files['nom']]['html']=read_FILE($files['fpath']);
 }
 
 
@@ -189,22 +191,22 @@ require_once $ruta;
 
 
 function loadChild($tipo,$objeto){global $v;
-
-
+$Datos="";$rDatos="";$recursividad="";
+$valoresDBUG['rutas']="";
 loadCSS($tipo,$objeto);
 loadJS($tipo,$objeto);
 
-$rutaPHP=get_path($tipo,'php',$objeto);										$valoresDBUG[rutas] .="<p>$rutaPHP</p>";
-include($rutaPHP);
+$rutaPHP=get_path($tipo,'php',$objeto);										$valoresDBUG['rutas'] .="<p>$rutaPHP</p>";
+if($rutaPHP){include($rutaPHP);};
 
 
-$rutaHTML=get_path($tipo,'html',$objeto); 									$valoresDBUG[rutas] .="<p>$rutaHTML</p>";
+$rutaHTML=get_path($tipo,'html',$objeto); 									$valoresDBUG['rutas'] .="<p>$rutaHTML</p>";
 
-$html=splitsheet(read_layout($rutaHTML),$objeto,$Datos,$rDatos); 			$valoresDBUG[html]=$html;
+$html=splitsheet(read_layout($rutaHTML),$objeto,$Datos,$rDatos); 			$valoresDBUG['html']=$html;
 
 
 
-if($v[debug]>0){$html=splitsheet(read_layout(get_path('objt','html','debug/bloque')),'bloque',$valoresDBUG,$recursividad,''); $valoresDBUG[html]=$html;}
+if($v['debug']>0){$html=splitsheet(read_layout(get_path('objt','html','debug/bloque')),'bloque',$valoresDBUG,$recursividad,''); $valoresDBUG['html']=$html;}
 
 	
 return $html;	
