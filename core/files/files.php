@@ -11,7 +11,7 @@ return $lineas;
 
 
 
-function write_FILE($donde,$content){
+function write_FILE($donde,$content){global $v;
 $doit=0;
 
 if(file_exists($donde)){
@@ -33,10 +33,19 @@ if(file_exists($donde)){
 $doit=1;	
 }
 
-
+	
+	
+	
+	
 	if($doit>0){
-	LOCALwFILE($donde,$content);	
-	CLOUDwFILE($donde,$content);			
+		LOCALwFILE($donde,$content);	
+		
+		#### sustituir  la escritura  de cloud por logear cambios 
+		
+		#if($v['conf']['mode']==2){
+		#$donde2=str_replace($v['path']['httpd'] . "/","",$donde);
+		#CLOUDwFILE($donde2,$content);
+		#};			
 	}
 
 
@@ -55,7 +64,9 @@ fwrite($fp, $content); fclose($fp);
 
 
 function CLOUDwFILE($donde,$content){
-	
+includeCORE('initS3/initS3');
+$s3 = new S3(awsAccessKey, awsSecretKey, true, 's3-eu-west-1.amazonaws.com');
+$s3->putObject($content, 'seekf', $donde, S3::ACL_PUBLIC_READ);	
 }
 
 
