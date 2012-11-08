@@ -1,5 +1,32 @@
 <?php
 
+function loadIMGCat($tamaño){
+
+$img="$tamaño/imgcat.jpg";
+$img=loadIMG($img);	
+return $img;
+}
+
+function loadLogoCent($img){global $v;
+
+$ruta="";
+
+if( strlen( str_replace("/",'',$img) ) < strlen($img) ){$imgs=explode('/',$img); $folder=$imgs[0]; $img=$imgs[1];$img="$folder/$img";};
+$donde=$v['path']['img'] . "/" . "global/logos/" . $img;
+if (file_exists($donde)) {$ruta=$donde;} 
+
+
+if($v['conf']['mode']==1){$ruta=str_replace($v['path']['img'],$v['path']['localBasePathimg'],$ruta);};
+if($v['conf']['mode']==2){$ruta=str_replace($v['path']['img'],$v['path']['cloudBasePathimg'],$ruta);};
+
+
+
+return $ruta;
+
+}
+
+
+
 
 function loadIMG($img){global $v;
 $ruta="";
@@ -10,11 +37,11 @@ if( strlen( str_replace("/",'',$img) ) < strlen($img) ){$imgs=explode('/',$img);
 
  
 $donde=$v['path']['img'] . "/" . "global/allviews/" . $img;
-if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "<br>\n";
+if (file_exists($donde)) {$ruta=$donde;} 
 
-$donde=$v['path']['img'] . "/" . "global/allviews/" . $v['where']['view'] . "/allids" ."/" . $img;
+$donde=$v['path']['img'] . "/" . "global/" . $v['where']['view'] . "/allids" ."/" . $img;
 if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v['path']['img'] . "/" . "global/allviews/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $img ;
+$donde=$v['path']['img'] . "/" . "global/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $img ;
 if (file_exists($donde)) {$ruta=$donde;} 
 
 
