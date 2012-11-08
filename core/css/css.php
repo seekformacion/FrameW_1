@@ -28,7 +28,7 @@ $nomfFinal .=$valores['path'] . $nomfile;
 $html .=$valores['html'];	
 }
 $nomfFinal=md5($nomfFinal);
-$v['dataCSSfinal']['all'][$nomfFinal]['path']=$v['path']['c_css'];
+$v['dataCSSfinal']['all'][$nomfFinal]['path']="";#$v['path']['c_css'];
 $v['dataCSSfinal']['all'][$nomfFinal]['html']=$html;
 $v['dataCSSfinal']['all'][$nomfFinal]['stl']=0;
 $v['dataCSSfinal']['all'][$nomfFinal]['stlname']="";
@@ -41,7 +41,7 @@ $nomfFinal .=$valores['path'] . $nomfile;
 $html .=$valores['html'];	
 }
 $nomfFinal=md5($nomfFinal);$stl=$nomfFinal;
-$v['dataCSSfinal']['A'][$nomfFinal]['path']=$v['path']['c_css'] . "/A";
+$v['dataCSSfinal']['A'][$nomfFinal]['path']="/A";#$v['path']['c_css'] . "/A";
 $v['dataCSSfinal']['A'][$nomfFinal]['html']=$html;
 $v['dataCSSfinal']['A'][$nomfFinal]['stl']=1;
 $v['dataCSSfinal']['A'][$nomfFinal]['stlname']=$stl;
@@ -53,7 +53,7 @@ $nomfFinal .=$valores['path'] . $nomfile;
 $html .=$valores['html'];	
 }
 $nomfFinal=md5($nomfFinal);
-$v['dataCSSfinal']['B'][$nomfFinal]['path']=$v['path']['c_css'] . "/B";
+$v['dataCSSfinal']['B'][$nomfFinal]['path']="/B";#$v['path']['c_css'] . "/B";
 $v['dataCSSfinal']['B'][$nomfFinal]['html']=$html;
 $v['dataCSSfinal']['B'][$nomfFinal]['stl']=0;
 $v['dataCSSfinal']['B'][$nomfFinal]['stlname']=$stl;
