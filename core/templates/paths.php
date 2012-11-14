@@ -258,6 +258,8 @@ require_once $ruta;
 
 
 function loadChild($tipo,$objeto){global $v;
+
+
 $Datos="";$rDatos="";$recursividad="";
 $valoresDBUG['rutas']="";
 loadCSS($tipo,$objeto);
