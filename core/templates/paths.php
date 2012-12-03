@@ -271,6 +271,7 @@ if($rutaPHP){include($rutaPHP);};
 
 $rutaHTML=get_path($tipo,'html',$objeto); 									$valoresDBUG['rutas'] .="<p>$rutaHTML</p>";
 
+
 $html=splitsheet(read_layout($rutaHTML),$objeto,$Datos,$rDatos); 			$valoresDBUG['html']=$html;
 
 

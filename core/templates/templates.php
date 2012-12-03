@@ -70,14 +70,16 @@ return $html;
 
 function recursividad($lineas2,$recursividad){
 	
-
+$agrupo2=0;
 if($recursividad){
+
 	foreach ($recursividad as $que2 => $datos){
 		
+			
 			$queprincipio2="<!-- $que2 -->";
 			$quefin2="<!-- fin $que2 -->";
 			
-	
+			
 			
 			$lineas3="";
 			foreach($lineas2 as $line){
@@ -144,7 +146,7 @@ $codigotot[$que2]=$codigo2;
 
 
 #print_r($codigotot);
-	
+$html="";	
 foreach($lineas3 as $linehtml){
 	
 	$html .=$linehtml;
@@ -156,7 +158,7 @@ foreach($codigotot as $que => $remplazo){
 
 $busco="%$que%";
 
-if($recursividad[$que][0]){$remplazo="";};
+if(key_exists($que[0], $recursividad)){$remplazo="";};
 
 $html=str_replace($busco,$remplazo,$html);		
 		
