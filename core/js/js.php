@@ -39,7 +39,8 @@ foreach ($v['dataJSfinal'] as $res => $nombres) {foreach ($nombres as $nombre =>
 		if($v['conf']['state']==1){$basePATH=$v['path']['l_js'];};
 		if($v['conf']['state']==2){$basePATH=$v['path']['c_js'];};
 		
-		$contenido=jsPOSTPROCESS($v['JSpostPROCESS'],$valores['html']);
+		#$contenido=jsPOSTPROCESS($v['JSpostPROCESS'],$valores['html']);
+		$contenido=$valores['html'];
 		write_FILE($v['path']['httpd'] . $basePATH . $ruta,$contenido);
 		
 			if($res != "B"){

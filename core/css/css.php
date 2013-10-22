@@ -74,15 +74,24 @@ if($v['conf']['state']==2){$basePATH=$v['path']['c_css'];$stl=$valores['stlname'
 	
 write_FILE($v['path']['httpd'] . $basePATH . $ruta, $valores['html']);
 
-if($res != "B"){
-if($valores['stl'])	{$v['linksCSS'] .="<link rel='stylesheet' type='text/css' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "' id='stl_" . $nombre . "' /> \n";}else
-					{$v['linksCSS'] .="<link rel='stylesheet' type='text/css' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "' /> \n";};
+if($res == "all"){
+$v['linksCSS'] .="<link rel='stylesheet' type='text/css' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "' id='stl_" . $nombre . "' /> \n";
 }
+if($res == "A"){
+$v['linksCSS'] .="<link rel='stylesheet' type='text/css' media='all and (orientation:landscape)' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "' id='stl_" . $nombre . "' /> \n";
+}		
+if($res == "B"){
+$v['linksCSS'] .="<link rel='stylesheet' type='text/css' media='all and (orientation:portrait)' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "' id='stl_" . $nombre . "' /> \n";
+}
+	
+#if($valores['stl'])	{$v['linksCSS'] .="<link rel='stylesheet' type='text/css' media='all and (orientation:landscape)' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "' id='stl_" . $nombre . "' /> \n";}else
+#					{$v['linksCSS'] .="<link rel='stylesheet' type='text/css' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "' /> \n";};
+#}
 
 
 ########### codigo a reemplazar en js
-if($res=="B"){$v['JSpostPROCESS']['%B%'] .=	"$('#stl_" . $stl . "[rel=stylesheet]').attr('href', '" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "'); \n";};
-if($res=="A"){$v['JSpostPROCESS']['%A%'] .=	"$('#stl_" . $stl . "[rel=stylesheet]').attr('href', '" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "'); \n";};	
+#if($res=="B"){$v['JSpostPROCESS']['%B%'] .=	"$('#stl_" . $stl . "[rel=stylesheet]').attr('href', '" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "'); \n";};
+#if($res=="A"){$v['JSpostPROCESS']['%A%'] .=	"$('#stl_" . $stl . "[rel=stylesheet]').attr('href', '" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "'); \n";};	
 ########### codigo a reemplazar en js
 
 	
