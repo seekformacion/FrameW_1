@@ -260,7 +260,7 @@ require_once $ruta;
 function loadChild($tipo,$objeto){global $v;
 
 
-$Datos="";$rDatos="";$recursividad="";
+$Datos=array();$rDatos="";$recursividad="";
 $valoresDBUG['rutas']="";
 loadCSS($tipo,$objeto);
 loadJS($tipo,$objeto);
@@ -272,7 +272,8 @@ if($rutaPHP){include($rutaPHP);};
 $rutaHTML=get_path($tipo,'html',$objeto); 									$valoresDBUG['rutas'] .="<p>$rutaHTML</p>";
 
 
-$html=splitsheet(read_layout($rutaHTML),$objeto,$Datos,$rDatos); 			$valoresDBUG['html']=$html;
+$html=splitsheet(read_layout($rutaHTML),$objeto,$Datos,$rDatos); 
+if(array_key_exists('codNULL', $Datos)){$html="";};							$valoresDBUG['html']=$html;
 
 
 

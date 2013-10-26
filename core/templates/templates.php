@@ -145,7 +145,7 @@ $codigotot[$que2]=$codigo2;
 
 
 
-#print_r($codigotot);
+
 $html="";	
 foreach($lineas3 as $linehtml){
 	
@@ -153,12 +153,16 @@ foreach($lineas3 as $linehtml){
 	
 
 	}
+
+
 	
 foreach($codigotot as $que => $remplazo){
 
 $busco="%$que%";
 
-if(key_exists($que[0], $recursividad)){$remplazo="";};
+$busc=$recursividad[$que];
+
+if(key_exists(0, $busc)){$remplazo="";};
 
 $html=str_replace($busco,$remplazo,$html);		
 		
