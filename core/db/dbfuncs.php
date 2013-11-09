@@ -24,4 +24,24 @@ if (!$dbnivel->close()){die($dbnivel->error());};
 return $resultados;	
 }
 
+
+function DBUpIns($queryp){
+global $v;$resultados=array();
+
+$dbnivel=new DB($v['conf']['host'],$v['conf']['usr'],$v['conf']['pass'],$v['conf']['db']);
+if (!$dbnivel->open()){die($dbnivel->error());};
+
+$dbnivel->query($queryp);
+
+if($v['debug']==-1){echo $queryp . "    <br>\n";}
+echo $dbnivel->error();
+
+
+if (!$dbnivel->close()){die($dbnivel->error());};	
+
+	
+}
+
+
+
 ?>
