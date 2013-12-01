@@ -273,8 +273,8 @@ $rutaHTML=get_path($tipo,'html',$objeto); 									$valoresDBUG['rutas'] .="<p>$
 
 
 $html=splitsheet(read_layout($rutaHTML),$objeto,$Datos,$rDatos); 
-if(array_key_exists('codNULL', $Datos)){$html="";};							$valoresDBUG['html']=$html;
-
+if(array_key_exists('codNULL', $Datos)){$html="";};											
+if(array_key_exists('ALTbloq', $Datos)){$html=$Datos['ALTbloq'];};							$valoresDBUG['html']=$html;
 
 
 if($v['debug']>0){$html=splitsheet(read_layout(get_path('objt','html','debug/bloque')),'bloque',$valoresDBUG,$recursividad,''); $valoresDBUG['html']=$html;}
