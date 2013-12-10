@@ -4,7 +4,7 @@
 
 function createCSS(){global $v;
 
-
+$IE="";
 
 ##########modo test
 if($v['conf']['state']==1){
@@ -64,7 +64,7 @@ $v['dataCSSfinal']['B'][$nomfFinal]['stlname']=$stl;
 }	
 ##########modo produccion
 
-$v['linksCSS']="";$v['JSpostPROCESS']['%B%']="";$v['JSpostPROCESS']['%A%']="";
+$v['linksCSS']=""; $v['linksCSSIE']="";   $v['JSpostPROCESS']['%B%']="";$v['JSpostPROCESS']['%A%']="";
 foreach ($v['dataCSSfinal'] as $res => $nombres) {foreach ($nombres as $nombre => $valores){
 
 $ruta=$valores['path'] . "/$nombre.css";
@@ -75,10 +75,14 @@ if($v['conf']['state']==2){$basePATH=$v['path']['c_css'];$stl=$valores['stlname'
 write_FILE($v['path']['httpd'] . $basePATH . $ruta, $valores['html']);
 
 if($res == "all"){
-$v['linksCSS'] .="<link rel='stylesheet' type='text/css' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "' id='stl_" . $nombre . "' /> \n";
+$v['linksCSS']   .="<link rel='stylesheet' type='text/css' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "' id='stl_" . $nombre . "' /> \n";
+$v['linksCSSIE'] .="<link rel='stylesheet' type='text/css' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "'/> \n";
+
 }
 if($res == "A"){
-$v['linksCSS'] .="<link rel='stylesheet' type='text/css' media='all and (orientation:landscape)' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "' id='stl_" . $nombre . "' /> \n";
+$v['linksCSS'] .="<link rel='stylesheet' type='text/css' media='all and (orientation:landscape)' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "' id='stl_" . $nombre . "' /> \n" ;
+$v['linksCSSIE'] .="<link rel='stylesheet' type='text/css' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "' /> \n";  
+  
 }		
 if($res == "B"){
 $v['linksCSS'] .="<link rel='stylesheet' type='text/css' media='all and (orientation:portrait)' href='" . $v['path']['baseURLskin'][$v['conf']['mode']] . $basePATH . $ruta . "' id='stl_" . $nombre . "' /> \n";

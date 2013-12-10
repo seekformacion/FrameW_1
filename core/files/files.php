@@ -75,6 +75,7 @@ function jsPOSTPROCESS($buscos,$contenido){
 
 foreach ($buscos as $qbusco => $qcambio){$busco[]=$qbusco;$cambio[]=$qcambio;};	
 $contenido=str_replace($busco,$cambio,$contenido);
+
 return $contenido;		
 }
 

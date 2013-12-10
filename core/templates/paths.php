@@ -79,21 +79,23 @@ if (file_exists($donde)) {$ruta=$donde;};
 
  
 $donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;} 
+if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
 $donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;}
+if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
 $donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;} 
+if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
 
 
 $donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;}
+if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
 $donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;}
+if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
 $donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;} 
+if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
 
-
+#echo "_______________________________________\n";
+#echo $ruta . "\n";
+#echo "_______________________________________\n";
 if($v['debug']>=4){echo "$ruta<br>"; };
 return $ruta;
 
