@@ -67,5 +67,3 @@ foreach ($v['dataJSfinal'] as $res => $nombres) {foreach ($nombres as $nombre =>
 
 
 ?>
-
-

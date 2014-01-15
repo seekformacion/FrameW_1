@@ -116,5 +116,3 @@ $v['linksCSS'] .="<link rel='stylesheet' type='text/css' media='all and (orienta
 
 
 ?>
-
-
