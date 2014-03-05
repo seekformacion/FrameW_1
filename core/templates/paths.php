@@ -258,7 +258,6 @@ require_once $ruta;
 
 
 
-
 function loadChild($tipo,$objeto){global $v;
 
 
