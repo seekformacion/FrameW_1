@@ -74,14 +74,33 @@ return $code;
 
 function create_new_user(){
 
-
+$ip=getRealIp();
 $seekforID=strtoupper(getUniqueCode(10));
-$res=DBUpIns("INSERT INTO skv_user_sessions (seekforID) values ('$seekforID');");
+$res=DBUpIns("INSERT INTO skv_user_sessions (seekforID ,ip) values ('$seekforID', '$ip');");
 
 return $seekforID;# . "_" . geo_ip(getRealIpAddr());
 
 }
 
 
+function getRealIp()
+{
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))   //check ip from share internet
+    {
+      $ip=$_SERVER['HTTP_CLIENT_IP'];
+    }
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   //to check ip is pass from proxy
+    {
+      $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    else
+    {
+      $ip=$_SERVER['REMOTE_ADDR'];
+    }
+	
+	if(strpos($ip,'92.168.1')>0){$ip="37.11.40.103";};
+	if($ip=="127.0.0.1"){$ip="37.11.40.103";};
+    return $ip;
+}
 
 ?>
