@@ -10,7 +10,7 @@ $chkSES=$datos['idSES'];
 if($chkSES==$idSES){
 	
 	$cents="";
-	foreach ($datos['idcs'] as $key => $idc) {
+	foreach ($datos['idcs'] as $key => $idc) {$datos['centAllow'][$idc]=1;
 	$cents.=$idc . ",";	
 	}	
 	$cents=substr($cents,0,-1); $firstC=$datos['idcs'][0];
