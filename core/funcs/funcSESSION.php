@@ -51,7 +51,7 @@ return($ascii);
 }
 
 
-function encryptIt($string) {global $cryptKey;
+function encryptIt($string) {global $cryptKey; echo $cryptKey;
 $output=ascii2hex((mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($cryptKey), $string, MCRYPT_MODE_CBC, md5(md5($cryptKey)))));
 //$output = str_replace("+", "%2B",$output);
 //$output = str_replace(".", "|",$output);
