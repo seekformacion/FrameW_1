@@ -1,13 +1,13 @@
 <?php
 
 
-function getDatSKUID($skpUID){global $idSES;
+function getDatSKUID($skpUID){//global $idSES;
 $datos=json_decode(decryptIt($skpUID), TRUE);	
 
 if(is_array($datos)){
-if(array_key_exists('idSES', $datos)){
-$chkSES=$datos['idSES'];
-if($chkSES==$idSES){
+//if(array_key_exists('idSES', $datos)){
+//$chkSES=$datos['idSES'];
+//if($chkSES==$idSES){
 	
 	$cents="";
 	foreach ($datos['idcs'] as $key => $idc) {$datos['centAllow'][$idc]=1;
@@ -20,9 +20,9 @@ $datos['lcents']=$cents;
 
 
 return $datos;	
-}
+//}
 
-}}
+}
 
 
 	
