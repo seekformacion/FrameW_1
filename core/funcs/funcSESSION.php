@@ -63,6 +63,9 @@ return $output;
 function decryptIt($string) {global $cryptKey;
 $string = hex2ascii($string);
 $output = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($cryptKey), $string, MCRYPT_MODE_CBC, md5(md5($cryptKey))), "\0");
+
+print_r($output);
+
 return $output;
 }
 
