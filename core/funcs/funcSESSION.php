@@ -64,15 +64,15 @@ function decryptIt($string) {global $cryptKey;
 $string = hex2ascii($string);
 $output = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($cryptKey), $string, MCRYPT_MODE_CBC, md5(md5($cryptKey))), "\0");
 
-$output=json_decode($output);
+$output=json_decode($output, true);
 
 
-//$eges=$output['id_acc'];
-//echo "SELECT id_cent FROM skP_relAccCent WHERE id_acc=$eges;";
-//$inf=DBselectSDB("SELECT id_cent FROM skP_relAccCent WHERE id_acc=$eges;",'seekpanel'); 
-//if(count($inf)>0){foreach ($inf as $kk => $vals){
-//$output['idcs'][]=$vals['id_cent'];	
-//}}
+$eges=$output['id_acc'];
+echo "SELECT id_cent FROM skP_relAccCent WHERE id_acc=$eges;";
+$inf=DBselectSDB("SELECT id_cent FROM skP_relAccCent WHERE id_acc=$eges;",'seekpanel'); 
+if(count($inf)>0){foreach ($inf as $kk => $vals){
+$output['idcs'][]=$vals['id_cent'];	
+}}
 
 print_r($output);
 
