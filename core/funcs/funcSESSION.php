@@ -64,9 +64,16 @@ function decryptIt($string) {global $cryptKey;
 $string = hex2ascii($string);
 $output = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($cryptKey), $string, MCRYPT_MODE_CBC, md5(md5($cryptKey))), "\0");
 
-//json_decode($output);
-//print_r($output);
+$output=json_decode($output);
 
+
+$eges=$output['id_acc'];
+$inf=DBselectSDB("SELECT id_cent FROM skP_relAccCent WHERE id_acc=$eges;",'seekpanel'); 
+if(count($inf)>0){foreach ($inf as $kk => $vals){
+$output['idcs'][]=$vals['id_cent'];	
+}}
+
+print_r($output);
 return $output;
 }
 
