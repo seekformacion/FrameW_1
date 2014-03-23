@@ -68,6 +68,7 @@ $output=json_decode($output);
 
 
 $eges=$output['id_acc'];
+echo "SELECT id_cent FROM skP_relAccCent WHERE id_acc=$eges;";
 $inf=DBselectSDB("SELECT id_cent FROM skP_relAccCent WHERE id_acc=$eges;",'seekpanel'); 
 if(count($inf)>0){foreach ($inf as $kk => $vals){
 $output['idcs'][]=$vals['id_cent'];	
@@ -76,7 +77,7 @@ $output['idcs'][]=$vals['id_cent'];
 print_r($output);
 
 $output=json_encode($output);
-return $output;
+//return $output;
 }
 
 
