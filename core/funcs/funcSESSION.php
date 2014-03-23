@@ -74,7 +74,7 @@ if(count($inf)>0){foreach ($inf as $kk => $vals){
 $output['idcs'][]=$vals['id_cent'];	
 }}
 
-print_r($output);
+//print_r($output);
 
 $output=json_encode($output);
 return $output;
