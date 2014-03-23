@@ -74,6 +74,8 @@ $output['idcs'][]=$vals['id_cent'];
 }}
 
 print_r($output);
+
+$output=json_encode($output);
 return $output;
 }
 
