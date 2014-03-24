@@ -118,7 +118,27 @@ return $id;
 }
 
 
+function DBUpInsLSDB($queryp,$dbsel){
+global $v;$resultados=array();
 
+$dbnivel=new DB($v['conf']['host'],$v['conf']['usr'],$v['conf']['pass'],$dbsel);
+if (!$dbnivel->open()){die($dbnivel->error());};
+
+
+$dbnivel->query($queryp);
+
+$queryp="SELECT LAST_INSERT_ID() as id;";
+$dbnivel->query($queryp);
+while ($row = $dbnivel->fetchassoc()){$id=$row['id'];};
+
+if($v['debug']==-1){echo $queryp . "    <br>\n";}
+echo $dbnivel->error();
+
+
+if (!$dbnivel->close()){die($dbnivel->error());};	
+
+return $id;	
+}
 
 
 
