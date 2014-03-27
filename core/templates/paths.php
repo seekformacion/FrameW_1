@@ -275,7 +275,12 @@ $rutaHTML=get_path($tipo,'html',$objeto); 									$valoresDBUG['rutas'] .="<p>$
 
 $html=splitsheet(read_layout($rutaHTML),$objeto,$Datos,$rDatos); 
 if(array_key_exists('codNULL', $Datos)){$html="";};
-if(array_key_exists('H_redirect', $Datos)){$html=$Datos['redirect'];};												
+if(array_key_exists('H_redirect', $Datos)){
+$url=$Datos['redirect'];
+header("Location: $url", TRUE, 303);
+
+};
+													
 if(array_key_exists('ALTbloq', $Datos)){$html=$Datos['ALTbloq'];};							$valoresDBUG['html']=$html;
 
 
