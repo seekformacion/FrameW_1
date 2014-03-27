@@ -280,7 +280,7 @@ $url=$Datos['redirect'];
 echo $url;
 
 //header("Location: $url", TRUE, 303);
-
+$html="";
 };
 													
 if(array_key_exists('ALTbloq', $Datos)){$html=$Datos['ALTbloq'];};							$valoresDBUG['html']=$html;
