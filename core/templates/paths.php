@@ -276,7 +276,7 @@ $rutaHTML=get_path($tipo,'html',$objeto); 									$valoresDBUG['rutas'] .="<p>$
 $html=splitsheet(read_layout($rutaHTML),$objeto,$Datos,$rDatos); 
 if(array_key_exists('codNULL', $Datos)){$html="";};
 if(array_key_exists('H_redirect', $Datos)){
-$url=$Datos['redirect'];
+$url=$Datos['H_redirect'];
 echo $url;
 
 //header("Location: $url", TRUE, 303);
