@@ -277,9 +277,8 @@ $html=splitsheet(read_layout($rutaHTML),$objeto,$Datos,$rDatos);
 if(array_key_exists('codNULL', $Datos)){$html="";};
 if(array_key_exists('H_redirect', $Datos)){
 $url=$Datos['H_redirect'];
-echo $url;
-
-//header("Location: $url", TRUE, 303);
+//echo $url;
+header("Location: $url", TRUE, 303);
 $html="";
 };
 													
