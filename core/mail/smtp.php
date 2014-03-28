@@ -13,7 +13,7 @@
 	<package>net.manuellemos.smtp</package>
 
 	<version>@(#) $Id: smtp.php,v 1.41 2009/04/12 06:15:06 mlemos Exp $</version>
-	<copyright>Copyright © (C) Manuel Lemos 1999-2009</copyright>
+	<copyright>Copyright ï¿½ (C) Manuel Lemos 1999-2009</copyright>
 	<title>Sending e-mail messages via SMTP protocol</title>
 	<author>Manuel Lemos</author>
 	<authoraddress>mlemos-at-acm.org</authoraddress>
@@ -482,7 +482,7 @@ class smtp_class
 	{
 		$message.="\n";
 		if($this->html_debug)
-			$message=str_replace("\n","<br />\n",HtmlEntities($message));
+			//$message=str_replace("\n","<br />\n",HtmlEntities($message));
 		//echo $message;
 		flush();
 	}
