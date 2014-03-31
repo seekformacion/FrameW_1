@@ -14,31 +14,33 @@ return $str;
 }
 
 function sendM($from,$fromN,$to,$toN,$subject,$message){
-include('/www/mail.php');  	
-$smtp->user=$from;
+include('/www/mail.php');
 
-$fromN=utt8($fromN);
-$toN=utt8($toN);
-$subject=utt8($subject);
 
-if($smtp->SendMessage(	$from, 
-						array($to), 
-						array(
-						
-							"MIME-Version: 1.0",
-							"Content-Type: text/html; charset=UTF-8;",
-							//" format=flowed",
-							"Content-Transfer-Encoding: 8bit",
-							
-							"From:$fromN <$from>","To:$toN <$to>",
-							"Subject: $subject",
-							"X-Sender: $from",
-							"User-Agent: Roundcube Webmail/0.9.5",					
-							"Date: ".strftime("%a, %d %b %Y %H:%M:%S %Z")),
-							"$message"
-							
-							))
-{echo "Message sent to $to OK.\n";}else{echo "Cound not send the message to $to.\nError: ".$smtp->error."\n";};	
+
+$mail->From = $from;
+$mail->FromName = $fromN;
+$mail->addAddress($to, $toN);  // Add a recipient
+//$mail->addAddress('ellen@example.com');               // Name is optional
+//$mail->addReplyTo('info@example.com', 'Information');
+//$mail->addCC('cc@example.com');
+//$mail->addBCC('bcc@example.com');
+
+$mail->Subject = $subject;
+$mail->Body    = $message;
+$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+if(!$mail->send()) {
+   echo 'Message could not be sent.';
+   echo 'Mailer Error: ' . $mail->ErrorInfo;
+   exit;
+}
+
+echo 'Message has been sent';
+
+
+  	
+
 	
 }
 
