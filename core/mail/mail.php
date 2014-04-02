@@ -16,7 +16,7 @@ return $str;
 function sendM($from,$fromN,$to,$toN,$subject,$message){
 include('/www/mail.php');
 
-
+$mail->Username = $from; 
 
 $mail->From = $from;
 $mail->FromName = $fromN;
