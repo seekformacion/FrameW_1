@@ -31,12 +31,12 @@ $mail->Body    = $message;
 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 if(!$mail->send()) {
-   echo 'Message could not be sent.';
-   echo 'Mailer Error: ' . $mail->ErrorInfo;
-   exit;
+   //echo 'Message could not be sent.';
+   //echo 'Mailer Error: ' . $mail->ErrorInfo;
+return FALSE;
 }
 
-echo 'Message has been sent';
+return TRUE;// 'Message has been sent';
 
 
   	
