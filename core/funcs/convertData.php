@@ -2,9 +2,11 @@
 
 function calculaedad($fnaci){
 $cumple=substr($fnaci,0,4) . "-" . substr($fnaci,4,2) . "-" . substr($fnaci,6,2);
-$date = date_create($cumple);
-$interval = $date->diff(new DateTime);
-$edad=$interval->y;	
+
+$now      = new DateTime();
+$birthday = new DateTime("$cumple 00:00:01");
+$interval = $now->diff($birthday);
+$edad = $interval->format('%y'); // 39 years
 
 return $edad;
 }
