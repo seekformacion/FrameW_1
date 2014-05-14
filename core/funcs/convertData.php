@@ -1,12 +1,13 @@
 <?php
 
 function calculaedad($fnaci){
+date_default_timezone_set('GMT');	
 $cumple=substr($fnaci,0,4) . "-" . substr($fnaci,4,2) . "-" . substr($fnaci,6,2);
-$cumple=strtotime($cumple);
+
 $now      = new DateTime();
 $birthday = new DateTime("$cumple 00:00:01");
 $interval = $now->diff($birthday);
-$edad = $interval->format('%y'); // 39 years
+$edad = $interval->format('%y'); 
 
 return $edad;
 }
