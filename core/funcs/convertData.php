@@ -2,9 +2,11 @@
 
 function calculaedad($fnaci){
 $cumple=substr($fnaci,0,4) . "-" . substr($fnaci,4,2) . "-" . substr($fnaci,6,2);
-$date = date_create($cumple);
-$interval = $date->diff(new DateTime);
-return $interval->y;	
+//$date = date_create($cumple);
+//$interval = $date->diff(new DateTime);
+//return $interval->y;	
+
+return $cumple;
 }
 
 
