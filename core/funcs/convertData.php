@@ -1,8 +1,8 @@
 <?php
 
 function calculaedad($fnaci){
-$cumple=substr($fnaci,0,4) . "-" . substr($fnaci,4,2) . "-" . substr($fnaci,6,2);
-
+//$cumple=substr($fnaci,0,4) . "-" . substr($fnaci,4,2) . "-" . substr($fnaci,6,2);
+$cumple="1976-05-12";
 $now      = new DateTime();
 $birthday = new DateTime("$cumple 00:00:01");
 $interval = $now->diff($birthday);
