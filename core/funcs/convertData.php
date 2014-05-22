@@ -31,7 +31,10 @@ if(count($datfC)>0){foreach($datfC as $kk => $vv){$datFPCup[$vv['idcampo']]=$vv[
 //print_r($datFPCup);
 foreach ($datFPCup as $idc => $nom) {
 if(array_key_exists($idc, $PdatCup)){$val=$PdatCup[$idc];}else{$val="";}	
-if($idc==14){$val=getCurCOD($idcurso);}#### recupero id del curso propio;
+if($idc==14){$val=getCurCOD($idcurso,'cd1');}#### recupero id del curso propio cd1;
+if($idc==17){$val=getCurCOD($idcurso,'cd2');}#### recupero id del curso propio cd2;
+if($idc==36){$val=getCurCOD($idcurso,'cd3');}#### recupero id del curso propio cd3;
+if($idc==43){$val=getCurCOD($idcurso,'cd4');}#### recupero id del curso propio cd4;
 
 $datos[$nom]=$val;	
 }
@@ -56,9 +59,9 @@ include($v['path']['bin'] . "/allsites/processCUP/defprocess.php");
 }
 
 
-function getCurCOD($idcurso){
-$inf2=DBselectSDB("SELECT cd1 FROM skv_cursos WHERE id=$idcurso;",'seekformacion'); 
-if(count($inf2)>0){$cpro=$inf2[1]['cd1'];}
+function getCurCOD($idcurso,$cod){
+$inf2=DBselectSDB("SELECT $cod FROM skv_cursos WHERE id=$idcurso;",'seekformacion'); 
+if(count($inf2)>0){$cpro=$inf2[1][$cod];}
 
 return $cpro;	
 }
@@ -144,9 +147,9 @@ $nval=$val;
 #####campo fecha de nacimiento
 if($cmp==12){
 $res= DBselectSDB("SELECT pixel FROM skP_equivals WHERE id_centro=0 AND id_campo=$cmp;",'seekpanel'); 
-if(array_key_exists(1, $res)){if($res[1]['pixel']){$nval=$res[1]['pixel'];}};
+if(array_key_exists(1, $res)){if($res[1]['pixel']!=""){$nval=$res[1]['pixel'];}};
 $res= DBselectSDB("SELECT pixel FROM skP_equivals WHERE id_centro=$idc AND id_campo=$cmp;",'seekpanel'); 
-if(array_key_exists(1, $res)){if($res[1]['pixel']){$nval=$res[1]['pixel'];}};		
+if(array_key_exists(1, $res)){if($res[1]['pixel']!=""){$nval=$res[1]['pixel'];}};		
 $nval=str_replace('aaaa',substr($val,0,4),$nval);		
 $nval=str_replace('mm',substr($val,4,2),$nval);	
 $nval=str_replace('dd',substr($val,6,2),$nval);		
@@ -154,14 +157,14 @@ $nval=str_replace('dd',substr($val,6,2),$nval);
 
 
 
-
 }else{
 $res= DBselectSDB("SELECT pixel FROM skP_equivals WHERE id_centro=0 AND id_campo=$cmp AND cod='$val';",'seekpanel'); 
-if(array_key_exists(1, $res)){if($res[1]['pixel']){$nval=$res[1]['pixel'];}};
+if(array_key_exists(1, $res)){if($res[1]['pixel']!=""){$nval=$res[1]['pixel'];}};
 $res= DBselectSDB("SELECT pixel FROM skP_equivals WHERE id_centro=$idc AND id_campo=$cmp AND cod='$val';",'seekpanel'); 
-if(array_key_exists(1, $res)){if($res[1]['pixel']){$nval=$res[1]['pixel'];}};
+if(array_key_exists(1, $res)){if($res[1]['pixel']!=""){$nval=$res[1]['pixel'];}};
 }
 
+if($nval=='cero'){$nval="0";}
 return $nval;	
 }
 

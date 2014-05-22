@@ -1,12 +1,13 @@
 <?php
 
+/*
 includeCORE('mail/smtp');
 includeCORE('mail/sasl');
 
 
   
 include('/www/mail.php');
-
+*/
 
 function utt8($str){
 $str="=?utf-8?b?".base64_encode($str)."?=";	
