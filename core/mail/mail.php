@@ -29,7 +29,7 @@ $mail->addAddress($to, $toN);  // Add a recipient
 
 $mail->Subject = $subject;
 $mail->Body    = $message;
-$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+$mail->AltBody = $subject;
 
 if(!$mail->send()) {
    //echo 'Message could not be sent.';
