@@ -14,7 +14,7 @@ $str="=?utf-8?b?".base64_encode($str)."?=";
 return $str;	
 }
 
-function sendM($from,$fromN,$to,$toN,$subject,$message){
+function sendM($from,$fromN,$to,$toN,$subject,$message,$plain){
 include('/www/mail.php');
 
 $mail->Username = $from; 
@@ -29,7 +29,7 @@ $mail->addAddress($to, $toN);  // Add a recipient
 
 $mail->Subject = $subject;
 $mail->Body    = $message;
-$mail->AltBody = $subject;
+$mail->AltBody = $plain;
 
 if(!$mail->send()) {
    //echo 'Message could not be sent.';
