@@ -14,8 +14,8 @@ $str="=?utf-8?b?".base64_encode($str)."?=";
 return $str;	
 }
 
-function sendM($from,$fromN,$to,$toN,$subject,$message,$plain){
-include('/www/mail.php');
+function sendM($from,$fromN,$to,$toN,$subject,$message,$plain,$conf){
+include("/www/$conf");
 
 $mail->Username = $from; 
 
