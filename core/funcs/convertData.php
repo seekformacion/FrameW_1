@@ -42,7 +42,7 @@ $datos[$nom]=$val;
 ######### checkeo de procesado expecifico del centro y postprocesado generico
 global $v;
 $nombre_fichero = $v['path']['bin'] . "/allsites/processCUP/$idcent.php";
-echo $nombre_fichero;
+																				if($debug){echo $nombre_fichero;};
 if (file_exists($nombre_fichero)) {
 include($nombre_fichero);
 }
@@ -62,7 +62,7 @@ include($v['path']['bin'] . "/allsites/processCUP/defprocess.php");
 function getCurCOD($idcurso,$cod){
 $inf2=DBselectSDB("SELECT $cod FROM skv_cursos WHERE id=$idcurso;",'seekformacion'); 
 if(count($inf2)>0){$cpro=$inf2[1][$cod];}
-echo "SELECT $cod FROM skv_cursos WHERE id=$idcurso;";
+
 return $cpro;	
 }
 
