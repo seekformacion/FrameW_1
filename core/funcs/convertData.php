@@ -4,14 +4,18 @@ function sendPIXEL($idcent,$idcupon,$idcurso,$method){
 $url=getPixel($idcent,$idcupon,$idcurso,0);	
 
 ########## envio por GET
-if($method==1){$url2=urlencode($url);
-$page = file_get_contents($url2);
+if($method==1){
+$c = curl_init($url);
+curl_setopt($c, CURLOPT_VERBOSE, false);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+$page = curl_exec($c);
+curl_close($c);	
 }
 #########################
 
 
 #############3 actualizo resultado
-DBUpInsSDB("UPDATE skP_cupones SET pixel='$url $url2', result='$page' WHERE id_cupon=$idcupon AND id_curso=$idcurso;",'seekpanel');		
+DBUpInsSDB("UPDATE skP_cupones SET pixel='$url', result='$page' WHERE id_cupon=$idcupon AND id_curso=$idcurso;",'seekpanel');		
 }
 
 
@@ -68,7 +72,7 @@ include($v['path']['bin'] . "/allsites/processCUP/defprocess.php");
 $daPIX= DBselectSDB("SELECT pixel FROM skv_relCentPixel WHERE id_centro=$idcent;",'seekformacion'); 
 if(count($daPIX)>0){$pixel=$daPIX[1]['pixel'];};
 
-foreach ($datos as $cmpi => $cmpiv) {
+foreach ($datos as $cmpi => $cmpiv) {$cmpiv=urlencode($cmpiv);
 $pixel .="&$cmpi=$cmpiv";	
 }
 
