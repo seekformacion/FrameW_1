@@ -4,14 +4,14 @@ function sendPIXEL($idcent,$idcupon,$idcurso,$method){
 $url=getPixel($idcent,$idcupon,$idcurso,0);	
 
 ########## envio por GET
-if($method==1){
-$page = file_get_contents($url);
+if($method==1){$url2=urlencode($url);
+$page = file_get_contents($url2);
 }
 #########################
 
 
 #############3 actualizo resultado
-DBUpInsSDB("UPDATE skP_cupones SET pixel='$url', result='$page' WHERE id_cupon=$idcupon AND id_curso=$idcurso;",'seekpanel');		
+DBUpInsSDB("UPDATE skP_cupones SET pixel='$url $url2', result='$page' WHERE id_cupon=$idcupon AND id_curso=$idcurso;",'seekpanel');		
 }
 
 
