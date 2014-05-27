@@ -62,9 +62,10 @@ include($v['path']['bin'] . "/allsites/processCUP/defprocess.php");
 function getCurCOD($idcurso,$cod){
 $inf2=DBselectSDB("SELECT $cod FROM skv_cursos WHERE id=$idcurso;",'seekformacion'); 
 if(count($inf2)>0){$cpro=$inf2[1][$cod];}
-
+echo "SELECT $cod FROM skv_cursos WHERE id=$idcurso;";
 return $cpro;	
 }
+
 
 
 function calculaedad($fnaci){
