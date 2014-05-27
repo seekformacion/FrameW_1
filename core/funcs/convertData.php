@@ -49,10 +49,14 @@ include($nombre_fichero);
 include($v['path']['bin'] . "/allsites/processCUP/defprocess.php");
 #####################################################
 
+$daPIX= DBselectSDB("SELECT pixel FROM skv_relCentPixel WHERE id_centro=$idcent;",'seekformacion'); 
+if(count($daPIX)>0){$pixel=$daPIX[1]['pixel'];};
 
+foreach ($datos as $cmpi => $cmpiv) {
+$pixel .="&$cmpi=$cmpiv";	
+}
 
-
-
+echo "\n\n $pixel \n\n";
 }else{
 
 }		
