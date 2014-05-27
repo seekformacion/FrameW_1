@@ -18,6 +18,7 @@ if(count($datis)>0){foreach($datis as $kk => $vv){$datCup[$vv['id_campo']]=$vv['
 if(count($datisC)>0){foreach($datisC as $kk => $vv){$datCup[$vv['id_campo']]=$vv['valor'];}};
 
 if(array_key_exists(12, $datCup)){$datCup[13]=calculaedad($datCup[12]);};
+$datCup[45]=$idcupon; #id del cupon
 
 $PdatCup=cforPixel($datCup,$idcent);
 
@@ -56,7 +57,12 @@ foreach ($datos as $cmpi => $cmpiv) {
 $pixel .="&$cmpi=$cmpiv";	
 }
 
+if($debug){
 echo "\n\n $pixel \n\n";
+}else{
+return $pixel;
+}
+
 }else{
 
 }		
