@@ -1,5 +1,24 @@
 <?php
 
+function sendPIXEL($idcent,$idcupon,$idcurso,$method){
+$url=getPixel($idcent,$idcupon,$idcurso,0);	
+
+########## envio por GET
+if($method==1){
+$c = curl_init($url);
+curl_setopt($c, CURLOPT_VERBOSE, false);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+$page = curl_exec($c);
+curl_close($c);	
+}
+#########################
+
+
+#############3 actualizo resultado
+DBUpInsSDB("UPDATE skP_cupones SET pixel='$url', result='$page' WHERE id_cupon=$idcupon AND id_curso=$idcurso;",'seekpanel');		
+}
+
+
 
 
 function getPixel($idcent,$idcupon,$idcurso,$debug){
