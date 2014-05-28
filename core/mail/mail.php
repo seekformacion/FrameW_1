@@ -17,7 +17,9 @@ return $str;
 function sendM($from,$fromN,$to,$toN,$subject,$message,$plain,$conf){
 include("/www/$conf");
 
+if($conf!='mail2.php'){
 $mail->Username = $from; 
+}
 
 $mail->From = $from;
 $mail->FromName = $fromN;
