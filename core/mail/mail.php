@@ -73,7 +73,7 @@ function verifyEmail($toemail, $fromemail, $getdetails = false){
 
 	if(!empty($mxhosts) ){
 		$mx_ip = $mxhosts[array_search(min($mxweight), $mxhosts)];
-		$mx_ip = $mxhosts[0];
+		//$mx_ip = $mxhosts[0];
 		echo $mx_ip;
 	    echo "\n_________________\n";
 	
