@@ -13,7 +13,7 @@ curl_close($c);
 }
 #########################
 
-
+$url=str_replace('&', "\n&", $url);
 #############3 actualizo resultado
 DBUpInsSDB("UPDATE skP_cupones SET pixel='$url', result='$page' WHERE id_cupon=$idcupon AND id_curso=$idcurso;",'seekpanel');		
 }
@@ -43,7 +43,7 @@ $PdatCup=cforPixel($datCup,$idcent);
 
 ##############3 datos que quiere el centro
 $datfC= DBselectSDB("SELECT idcampo, bd FROM skv_relCampos WHERE id_centro=$idcent ORDER 
-BY FIELD(idcampo,1,2,21,11,18,12,13,4,5,3,8,9,10,6,7,15,16,23,19,14,17,20,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42);",'seekformacion'); 
+BY FIELD(idcampo,1,2,21,11,18,12,13,4,5,3,8,9,10,6,7,15,16,23,19,14,17,20,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51);",'seekformacion'); 
 if(count($datfC)>0){foreach($datfC as $kk => $vv){$datFPCup[$vv['idcampo']]=$vv['bd'];}};
 
 
