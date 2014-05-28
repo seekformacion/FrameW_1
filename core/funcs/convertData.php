@@ -89,7 +89,7 @@ return $pixel;
 
 
 function getCurCOD($idcurso,$cod){
-$inf2=DBselectSDB("SELECT $cod FROM skv_cursos WHERE id=$idcurso;",'seekpanel'); 
+$inf2=DBselectSDB("SELECT $cod FROM skP_cursos WHERE id=$idcurso;",'seekpanel'); 
 if(count($inf2)>0){$cpro=$inf2[1][$cod];}
 
 return $cpro;	
