@@ -62,11 +62,22 @@ function verifyEmail($toemail, $fromemail, $getdetails = false){
 	if( filter_var($domain, FILTER_VALIDATE_IP) )
 		$mx_ip = $domain;
 	else
-		getmxrr($domain, $mxhosts, $mxweight);
+		
+		echo "\n_________________\n"; 
+		echo "\n$domain\n";
+		print_r(getmxrr($domain, $mxhosts, $mxweight));
+	    echo "\n_________________\n"; 	
+		print_r($mxhosts);
+	    echo "\n_________________\n";
+	
 
-	if(!empty($mxhosts) )
+	if(!empty($mxhosts) ){
 		$mx_ip = $mxhosts[array_search(min($mxweight), $mxhosts)];
-	else {
+		$mx_ip = $mxhosts[0];
+		echo $mx_ip;
+	    echo "\n_________________\n";
+	
+	}else {
 		if( filter_var($domain, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ) {
 			$record_a = dns_get_record($domain, DNS_A);
 		}
@@ -84,11 +95,14 @@ function verifyEmail($toemail, $fromemail, $getdetails = false){
 			return ( (true == $getdetails) ? array($result, $details) : $result );
 		}
 	}
-
+    
+	
+	
+	$details="";
 	$connect = @fsockopen($mx_ip, 25); 
 	if($connect){ 
 		if(ereg("^220", $out = fgets($connect, 1024))){ 
-			fputs ($connect , "HELO $HTTP_HOST\r\n"); 
+			fputs ($connect , "HELO publiactive.es\r\n"); 
 			$out = fgets ($connect, 1024);
 			$details .= $out."\n";
  
