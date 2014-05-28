@@ -62,9 +62,9 @@ $datos[$nom]=$val;
 ######### checkeo de procesado expecifico del centro y postprocesado generico
 global $v;
 $nombre_fichero = $v['path']['bin'] . "/allsites/processCUP/$idcent.php";
-																				if($debug){echo $nombre_fichero;};
+																				
 if (file_exists($nombre_fichero)) {
-include($nombre_fichero);
+include($nombre_fichero);if($debug){echo $nombre_fichero;};
 }
 include($v['path']['bin'] . "/allsites/processCUP/defprocess.php");
 #####################################################
