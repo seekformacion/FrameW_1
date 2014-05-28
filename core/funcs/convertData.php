@@ -48,7 +48,7 @@ if(count($datfC)>0){foreach($datfC as $kk => $vv){$datFPCup[$vv['idcampo']]=$vv[
 
 
 
-print_r($datFPCup);
+//print_r($datFPCup);
 foreach ($datFPCup as $idc => $nom) {
 if(array_key_exists($idc, $PdatCup)){$val=$PdatCup[$idc];}else{$val="";}	
 if($idc==14){$val=getCurCOD($idcurso,'cd1');}#### recupero id del curso propio cd1;
