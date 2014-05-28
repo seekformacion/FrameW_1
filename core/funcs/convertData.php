@@ -54,7 +54,7 @@ if(array_key_exists($idc, $PdatCup)){$val=$PdatCup[$idc];}else{$val="";}
 if($idc==14){$val=getCurCOD($idcurso,'cd1');}#### recupero id del curso propio cd1;
 if($idc==17){$val=getCurCOD($idcurso,'cd2');}#### recupero id del curso propio cd2;
 if($idc==36){$val=getCurCOD($idcurso,'cd3');}#### recupero id del curso propio cd3;
-if($idc==43){$val=getCurCOD($idcurso,'cd4'); echo "\n --- $val\n";}#### recupero id del curso propio cd4;
+if($idc==43){$val=getCurCOD($idcurso,'cd4');}#### recupero id del curso propio cd4;
 
 $datos[$nom]=$val;	
 }
@@ -89,7 +89,7 @@ return $pixel;
 
 
 function getCurCOD($idcurso,$cod){
-$inf2=DBselectSDB("SELECT $cod FROM skv_cursos WHERE id=$idcurso;",'seekformacion'); 
+$inf2=DBselectSDB("SELECT $cod FROM skv_cursos WHERE id=$idcurso;",'seekpanel'); 
 if(count($inf2)>0){$cpro=$inf2[1][$cod];}
 
 return $cpro;	
