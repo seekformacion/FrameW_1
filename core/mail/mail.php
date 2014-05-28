@@ -32,8 +32,8 @@ $mail->Body    = $message;
 $mail->AltBody = $plain;
 
 if(!$mail->send()) {
-   //echo 'Message could not be sent.';
-   //echo 'Mailer Error: ' . $mail->ErrorInfo;
+   echo 'Message could not be sent.';
+   echo 'Mailer Error: ' . $mail->ErrorInfo;
 return FALSE;
 }
 
