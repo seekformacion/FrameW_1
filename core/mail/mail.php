@@ -23,7 +23,7 @@ $mail->Username = $from;
 
 if((array_key_exists('LU-1', $vconf))&&(array_key_exists('LU-2', $vconf))){
 	$LU1=$vconf['LU-1'];$LU2=$vconf['LU-2'];
-$mail->addCustomHeader("List-Unsubscribe","<$LU1>, <$LU2>");
+$mail->addCustomHeader("List-Unsubscribe","<mailto:$LU1>, <$LU2>");
 }
 
 $mail->From = $from;
