@@ -14,11 +14,16 @@ $str="=?utf-8?b?".base64_encode($str)."?=";
 return $str;	
 }
 
-function sendM($from,$fromN,$to,$toN,$subject,$message,$plain,$conf){
+function sendM($from,$fromN,$to,$toN,$subject,$message,$plain,$conf,$vconf){
 include("/www/$conf");
 
 if($conf!='mail2.php'){
 $mail->Username = $from; 
+}
+
+if((array_key_exists('LU-1', $vconf))&&(array_key_exists('LU-2', $vconf))){
+	$LU1=$vconf['LU-1'];$LU2=$vconf['LU-2'];
+$mail->addCustomHeader("List-Unsubscribe","<$LU1>, <$LU2>");
 }
 
 $mail->From = $from;
