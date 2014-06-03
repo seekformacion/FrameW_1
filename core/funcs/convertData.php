@@ -19,8 +19,7 @@ if(count($reglas)>0){ foreach ($reglas as $key => $values) {
 	if(array_key_exists(1, $sekid)){$seekforID=$sekid[1]['seekforID'];};
 	
 	$cplreg=array();$id=""; 
-    $cplreg=DBselectSDB("select id FROM skv_user_data where id_campo=$atributo AND valor $valor AND seekforID=$seekforID;",'seekformacion');
-	echo "select id FROM skv_user_data where id_campo=$atributo AND valor $valor AND seekforID=$seekforID;";
+    $cplreg=DBselectSDB("select id FROM skv_user_data where id_campo=$atributo AND valor $valor AND seekforID='$seekforID';",'seekformacion');
 	if(array_key_exists(1, $cplreg)){$cpl=$CPLn;};
 	   
 }}
