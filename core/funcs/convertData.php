@@ -1,5 +1,35 @@
 <?php
 
+
+function getCPLcup($idcup,$idcent,$idcurso){$cpl="";
+
+$datis= DBselectSDB("SELECT pccur FROM skv_cursos WHERE id=$idcurso;",'seekformacion'); 	
+if(array_key_exists(1, $datis)){$cpl=$datis[1]['pccur'];};
+
+
+$CPLAreg=array();
+$reglas=DBselectSDB("select atributo, valor, CPL from skP_precios_rule where id_centro=$idcent AND proceso=2 ORDER BY orden ASC",'seekpanel');
+if(count($reglas)>0){ foreach ($reglas as $key => $values) {
+   	   $atributo=$values['atributo'];
+	   $valor=$values['valor'];
+	   $CPLn=$values['CPL'];
+	
+	
+	$sekid=DBselectSDB("select seekforID FROM skf_datCupon where id=$idcup;",'seekformacion');
+	if(array_key_exists(1, $sekid)){$seekforID=$sekid[1]['seekforID'];};
+	
+	$cplreg=array();$id=""; 
+    $cplreg=DBselectSDB("select id FROM skv_user_data where campo=$atributo AND valor $valor AND seekforID=$seekforID;",'seekpanel');
+	if(array_key_exists(1, $cplreg)){$cpl=$CPLn;};
+	   
+}}
+		
+	
+return $cpl;	
+}
+
+
+
 function sendPIXEL($idcent,$idcupon,$idcurso,$method){
 $url=getPixel($idcent,$idcupon,$idcurso,0);	
 
