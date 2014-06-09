@@ -71,27 +71,53 @@ return $ruta;
 function get_path($tipo,$ext,$objeto){global $v;
 $ruta="";
 
+$dev='P';
+if(array_key_exists('HTTP_X_UA_DEVICE', $_SERVER)){$dev=$_SERVER['HTTP_X_UA_DEVICE'];}
+
 if( strlen( str_replace("/",'',$objeto) ) < strlen($objeto) ){$objetos=explode('/',$objeto); $folder=$objetos[0]; $objeto=$objetos[1];$objeto="$folder/$objeto";};
 
 
-$donde=$v['path']['fw'] . "/$tipo/" . $objeto . ".$ext";
+$donde		=$v['path']['fw'] . "/$tipo/" . $objeto . ".$ext";
+$dondeDEV	=$v['path']['fw'] . "/$tipo/" . $objeto . "|$dev.$ext";
 if (file_exists($donde)) {$ruta=$donde;};
-
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;};
  
-$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
+$donde		=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
+$dondeDEV	=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . "|$dev.$ext";
 if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
-$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
-$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".$ext";
-if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;} #echo $donde . "\n";
 
 
-$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
+$donde		=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".$ext";
+$dondeDEV	=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/allids" ."/" . $objeto . "|$dev.$ext";
 if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
-$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".$ext";
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;} #echo $donde . "\n";
+
+
+
+$donde		=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".$ext";
+$dondeDEV	=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . "|$dev.$ext";
 if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
-$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".$ext";
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;} #echo $donde . "\n";
+
+
+$donde		=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . ".$ext";
+$dondeDEV	=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/allviews/" . $objeto . "|$dev.$ext";
 if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;} #echo $donde . "\n";
+
+
+$donde		=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".$ext";
+$dondeDEV	=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/allids" ."/" . $objeto . "|$dev.$ext";
+if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;} #echo $donde . "\n";
+
+
+$donde		=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".$ext";
+$dondeDEV	=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/" . $ext . "/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . "|$dev.$ext";
+if (file_exists($donde)) {$ruta=$donde;} #echo $donde . "\n";
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;} #echo $donde . "\n";
+
 
 #echo "_______________________________________\n";
 #echo $ruta . "\n";
@@ -107,27 +133,51 @@ return $ruta;
 function get_pathCSS($tipo,$objeto){global $v;
 $ruta="";
 
+$dev='P';
+if(array_key_exists('HTTP_X_UA_DEVICE', $_SERVER)){$dev=$_SERVER['HTTP_X_UA_DEVICE'];}
+
+
 if( strlen( str_replace("/",'',$objeto) ) < strlen($objeto) ){$objetos=explode('/',$objeto); $folder=$objetos[0]; $objeto=$objetos[1];$objeto="$folder/$objeto";};
 
 
-$donde=$v['path']['fw'] . "/$tipo/" . $objeto . ".css";
+$donde		=$v['path']['fw'] . "/$tipo/" . $objeto . ".css";
+$dondeDEV	=$v['path']['fw'] . "/$tipo/" . $objeto . "|$dev.css";
 if (file_exists($donde)) {$ruta=$donde;}
-
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;}
  
-$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/css/allviews/" . $objeto . ".css";
+ 
+ 
+$donde		=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/css/allviews/" . $objeto . ".css";
+$dondeDEV	=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/css/allviews/" . $objeto . "|$dev.css";
 if (file_exists($donde)) {$ruta=$donde;};
-$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/css/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".css";
-if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/css/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".css";
-if (file_exists($donde)) {$ruta=$donde;} 
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;};
 
 
-$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/css/allviews/" . $objeto . ".css";
+$donde		=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/css/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".css";
+$dondeDEV	=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/css/" . $v['where']['view'] . "/allids" ."/" . $objeto . "|$dev.css";
 if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/css/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".css";
-if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/css/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".css";
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;};
+
+$donde		=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/css/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".css";
+$dondeDEV	=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/css/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . "|$dev.css";
 if (file_exists($donde)) {$ruta=$donde;} 
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;};
+
+$donde		=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/css/allviews/" . $objeto . ".css";
+$dondeDEV	=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/css/allviews/" . $objeto . "|$dev.css";
+if (file_exists($donde)) {$ruta=$donde;}
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;};
+
+$donde		=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/css/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".css";
+$dondeDEV	=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/css/" . $v['where']['view'] . "/allids" ."/" . $objeto . "|$dev.css";
+if (file_exists($donde)) {$ruta=$donde;}
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;};
+
+
+$donde		=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/css/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".css";
+$dondeDEV	=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/css/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . "|$dev.css";
+if (file_exists($donde)) {$ruta=$donde;}
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;}; 
 
 if($v['debug']>3){echo "$ruta <br>\n";};
 return $ruta;   
@@ -138,28 +188,52 @@ return $ruta;
 
 function get_pathJS($tipo,$objeto){global $v;
 $ruta="";
+$dev='P';
+if(array_key_exists('HTTP_X_UA_DEVICE', $_SERVER)){$dev=$_SERVER['HTTP_X_UA_DEVICE'];}
 
 if( strlen( str_replace("/",'',$objeto) ) < strlen($objeto) ){$objetos=explode('/',$objeto); $folder=$objetos[0]; $objeto=$objetos[1];$objeto="$folder/$objeto";};
 
 
-$donde=$v['path']['fw'] . "/$tipo/" . $objeto . ".js";
+$donde		=$v['path']['fw'] . "/$tipo/" . $objeto . ".js";
+$dondeDEV	=$v['path']['fw'] . "/$tipo/" . $objeto . "|$dev.js";
 if (file_exists($donde)) {$ruta=$donde;}
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;};
 
  
-$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/js/allviews/" . $objeto . ".js";
+$donde		=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/js/allviews/" . $objeto . ".js";
+$dondeDEV	=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/js/allviews/" . $objeto . "|$dev.js";
 if (file_exists($donde)) {$ruta=$donde;}; #echo "$donde <br>";
-$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/js/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".js";
-if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/js/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".js";
-if (file_exists($donde)) {$ruta=$donde;} 
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;};
 
 
-$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/js/allviews/" . $objeto . ".js";
+$donde		=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/js/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".js";
+$dondeDEV	=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/js/" . $v['where']['view'] . "/allids" ."/" . $objeto . "|$dev.js";
 if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/js/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".js";
-if (file_exists($donde)) {$ruta=$donde;}
-$donde=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/js/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".js";
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;};
+
+
+$donde		=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/js/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".js";
+$dondeDEV	=$v['path']['bin'] . "/" . "allsites" . "/" . $tipo . "/js/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . "|$dev.js";
 if (file_exists($donde)) {$ruta=$donde;} 
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;};
+
+
+$donde		=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/js/allviews/" . $objeto . ".js";
+$dondeDEV	=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/js/allviews/" . $objeto . "|$dev.js";
+if (file_exists($donde)) {$ruta=$donde;}
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;};
+
+
+$donde		=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/js/" . $v['where']['view'] . "/allids" ."/" . $objeto . ".js";
+$dondeDEV	=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/js/" . $v['where']['view'] . "/allids" ."/" . $objeto . "|$dev.js";
+if (file_exists($donde)) {$ruta=$donde;}
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;};
+
+$donde		=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/js/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . ".js";
+$dondeDEV	=$v['path']['bin'] . "/" . $v['where']['site'] . "/" . $tipo . "/js/" . $v['where']['view'] . "/ID" . $v['where']['id'] . "/" . $objeto . "|$dev.js";
+if (file_exists($donde)) {$ruta=$donde;} 
+if (file_exists($dondeDEV)) {$ruta=$dondeDEV;};
+
 
 if($v['debug']>=4){echo "$ruta<br>"; };
 return $ruta;
