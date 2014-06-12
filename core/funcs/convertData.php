@@ -87,6 +87,8 @@ if($idc==14){$val=getCurCOD($idcurso,'cd1');}#### recupero id del curso propio c
 if($idc==17){$val=getCurCOD($idcurso,'cd2');}#### recupero id del curso propio cd2;
 if($idc==36){$val=getCurCOD($idcurso,'cd3');}#### recupero id del curso propio cd3;
 if($idc==43){$val=getCurCOD($idcurso,'cd4');}#### recupero id del curso propio cd4;
+if($idc==46){$val=getCurIDP($idcurso);}#### recupero id de portal del curso;
+
 
 $datos[$nom]=$val;	
 }
@@ -123,6 +125,13 @@ return $pixel;
 function getCurCOD($idcurso,$cod){
 $inf2=DBselectSDB("SELECT $cod FROM skP_cursos WHERE id=$idcurso;",'seekpanel'); 
 if(count($inf2)>0){$cpro=$inf2[1][$cod];}
+
+return $cpro;	
+}
+
+function getCurIDP($idcurso){
+$inf2=DBselectSDB("SELECT idp FROM skf_urls WHERE t_id=$idcurso AND tipo=2;",'seekformacion'); 
+if(count($inf2)>0){$cpro=$inf2[1]['idp'];}
 
 return $cpro;	
 }
