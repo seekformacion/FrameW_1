@@ -33,6 +33,8 @@ return $cpl;
 function sendPIXEL($idcent,$idcupon,$idcurso,$method){
 $url=getPixel($idcent,$idcupon,$idcurso,0);	
 
+$page="Prueba - no enviado a centro";
+
 ########## envio por GET
 if($method==1){
 $c = curl_init($url);
