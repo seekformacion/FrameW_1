@@ -70,6 +70,8 @@ if(count($datisC)>0){foreach($datisC as $kk => $vv){$datCup[$vv['id_campo']]=$vv
 
 if(array_key_exists(12, $datCup)){$datCup[13]=calculaedad($datCup[12]);};
 $datCup[45]=$idcupon; #id del cupon
+$datCup[46]=getCurIDP($idcurso); #id del cupon
+
 
 $PdatCup=cforPixel($datCup,$idcent);
 
@@ -87,7 +89,7 @@ if($idc==14){$val=getCurCOD($idcurso,'cd1');}#### recupero id del curso propio c
 if($idc==17){$val=getCurCOD($idcurso,'cd2');}#### recupero id del curso propio cd2;
 if($idc==36){$val=getCurCOD($idcurso,'cd3');}#### recupero id del curso propio cd3;
 if($idc==43){$val=getCurCOD($idcurso,'cd4');}#### recupero id del curso propio cd4;
-if($idc==46){$val=getCurIDP($idcurso);}#### recupero id de portal del curso;
+
 
 
 $datos[$nom]=$val;	
