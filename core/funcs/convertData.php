@@ -234,7 +234,7 @@ $nval=str_replace('dd',substr($val,6,2),$nval);
 $res= DBselectSDB("SELECT pixel FROM skP_equivals WHERE id_centro=0 AND id_campo=$cmp AND cod='$val';",'seekpanel'); 
 if(array_key_exists(1, $res)){if($res[1]['pixel']!=""){$nval=$res[1]['pixel'];}};
 $res= DBselectSDB("SELECT pixel FROM skP_equivals WHERE id_centro=$idc AND id_campo=$cmp AND cod='$val';",'seekpanel'); 
-echo "SELECT pixel FROM skP_equivals WHERE id_centro=$idc AND id_campo=$cmp AND cod='$val';";
+//echo "SELECT pixel FROM skP_equivals WHERE id_centro=$idc AND id_campo=$cmp AND cod='$val';";
 if(array_key_exists(1, $res)){if($res[1]['pixel']!=""){$nval=$res[1]['pixel'];}};
 }
 
