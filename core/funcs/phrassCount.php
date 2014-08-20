@@ -478,7 +478,8 @@ $idp=$v['where']['idp'];
 
 ######### si esta cacheado aqui debo recuperar de la cache
 #####  $v['where']['cats_inf_otras'] , $listcur, $v['palmatch']
-
+$resC=3;
+if($v['debugIN']>0){$resC=3;}
 $cache=search_STR($idp,$str);
 if($cache['c']==3){
 $dvals=json_decode($cache['cache'],TRUE);	
@@ -537,7 +538,7 @@ $listcurA=array();
 		$limite=$v['conf']['limitENGINE'];
 		
 																					if($v['debugIN']>0){
-																					echo "<br>$minp - $maxP -> limite:$limite";	
+																					$v['dbi'].=  "<br>$minp - $maxP -> limite:$limite";	
 																					}
 
 		arsort($listcurA);
@@ -572,9 +573,9 @@ $listcurA=array();
 
 
 						#########################################################  creo array tematicas relacionadas
-						$lcatsT="";arsort($ottCAT);
+						$lcatsT="";arsort($ottCAT);$OT=0;$MOT=5;if($v['debugIN']>0){$MOT=999;}
 						if(count($ottCAT)>0){
-						foreach ($ottCAT as $idc => $qty) {if($qty>0){$lcatsT .=$idc . ",";};}; 
+						foreach ($ottCAT as $idc => $qty) {if($OT<=$MOT){if($qty>0){$lcatsT .=$idc . ",";};$OT++;}}; 
 						$lcatsT=substr($lcatsT, 0,-1);
 						
 						$dcats=array();
@@ -625,7 +626,7 @@ $nc		=$cursF['nc'];
 ############## Ordeno resultados
 $ini=(($pag-1)*$cpp);
 $fin=($ini+$cpp)-1;
-//$fin=$nc;
+if($v['debugIN']>0){$fin=$nc;};
 $curs=ordenaCURsNEW($listcur,$ini,$fin);
 
 
@@ -635,12 +636,12 @@ foreach ($curs as $kk => $id) {$listcur.="$id,";}$listcur=substr($listcur, 0,-1)
 
 
 																					if($v['debugIN']>0){
-																					echo "<br>\n<br>\nfiltros en getCURcat:<br>\n";
-																					print_r($v['subs']);}
+																					$v['dbi'].=  "<br>\n<br>\nfiltros en getCURcat:<br>\n";
+																					$v['dbi'].=json_encode($v['subs']);}
 
 $tiempo_fin = microtime(true);
 																					if($v['debugIN']>0){
-																					echo "<br>\nTime getCURcat: " . ($tiempo_fin - $tiempo_inicio) . "<br>\n";
+																					$v['dbi'].=  "<br>\nTime getCURcat: " . ($tiempo_fin - $tiempo_inicio) . "<br>\n";
 																					}
 
 
@@ -832,8 +833,8 @@ $str=palNO($str);
  
 
 																					if($v['debugIN']>0){
-																					echo "<br>\n<br>\nSTR en SC:<br>\n";
-																					print_r($str);}
+																					$v['dbi'].= "<br>\n<br>\nSTR en SC:<br>\n";
+																					$v['dbi'].=json_encode($str);}
 
 
 
@@ -841,7 +842,7 @@ $str=palNO($str);
 $tiempo_fin = microtime(true);
 
 																					if($v['debugIN']>0){
-																					echo "<br>\nTime searchCUR: " . ($tiempo_fin - $tiempo_inicio) . "<br>\n";
+																					$v['dbi'].=  "<br>\nTime searchCUR: " . ($tiempo_fin - $tiempo_inicio) . "<br>\n";
 																					}
 
 
@@ -863,8 +864,8 @@ global $v;
 $bus=phraseC($str,1,2,1,3);
 
   																	                if($v['debugIN']>0){
-																					echo "<br>\n<br>\nPAL bsco bus['w'] en SC2:<br>\n";
-																					print_r($bus['w']);}
+																					$v['dbi'].=  "<br>\n<br>\nPAL bsco bus['w'] en SC2:<br>\n";
+																					$v['dbi'].=json_encode($bus['w']);}
 
 
 //print_r($bus['w']);
@@ -887,7 +888,7 @@ foreach ($bus['w'] as $numpals => $pals) {foreach ($pals as $keywd => $pes){
 $dcuNO=DBselectSDB("SELECT ant from antonimos WHERE pal='$keywd';",'seek_keys');
 if(array_key_exists(1, $dcuNO)){
 																			if($v['debugIN']>0){
-								                                            echo "\n\nPALS RESTO en SC2:\n";}
+								                                            $v['dbi'].=  "\n\nPALS RESTO en SC2:\n";}
        
 	 foreach ($dcuNO as $kk => $vkno){
 			
@@ -900,7 +901,7 @@ if(array_key_exists(1, $dcuNO)){
 			if(array_key_exists($id, $res)){$res[$id]=$res[$id]-($peso*20);}else{$res[$id]=-($peso*20);};
 			}
 			if($v['debugIN']>0){
-			echo "_______________\nresto \t$numpalsA $kwr \t\t\t\t $keyw \t   <---- (-)\n";
+			$v['dbi'].=  "_______________\nresto \t$numpalsA $kwr \t\t\t\t $keyw \t   <---- (-)\n";
 			}}
 		}
 	
@@ -910,7 +911,7 @@ if(array_key_exists(1, $dcuNO)){
 	if(array_key_exists($id, $res)){$res[$id]=$res[$id]+($peso*1);}else{$res[$id]=($peso*1);}
 	}		
 	if($v['debugIN']>0){
-	echo "\npongo \t$numpals $keywd \t\t\t\t $keyw \t   <---- (-)\n";	
+	$v['dbi'].=  "\npongo \t$numpals $keywd \t\t\t\t $keyw \t   <---- (-)\n";	
 	}}
 
 }
@@ -923,8 +924,8 @@ if(array_key_exists(1, $dcuNO)){
 					######### creacion de palabras clave para strong
 					arsort($palMatch);$v['palmatch']=$palMatch;
 																					if($v['debugIN']>0){
-																					echo "<br>\n<br>\npalMatch:<br>\n";
-																					print_r($palMatch);}
+																					$v['dbi'].=  "<br>\n<br>\npalMatch:<br>\n";
+																					$v['dbi'].= json_encode($palMatch);}
 					global $pals; ###### lo cacheamos????
 					$pals=array();
 					$resK=DBselect("SELECT id, keyword FROM skf_cat_keywords WHERE id_cat=$idc ORDER BY CHAR_LENGTH(keyword) DESC;");	
@@ -960,7 +961,7 @@ $lista=substr($lista, 0,-1);
 
 $tiempo_fin = microtime(true);
 																			if($v['debugIN']>0){
-																			echo "<br>\nTime searchCUR2: " . ($tiempo_fin - $tiempo_inicio) . "<br>\n";
+																			$v['dbi'].=  "<br>\nTime searchCUR2: " . ($tiempo_fin - $tiempo_inicio) . "<br>\n";
 																			}
 
 return $pesos; 
@@ -970,4 +971,4 @@ return $pesos;
 
 
 
-?> 
+?>
