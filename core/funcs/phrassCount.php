@@ -78,7 +78,7 @@ $nnpp++;
 	
 }
 
-function search_STR($idp,$str){ $result['c']=0;
+function search_STR($idp,$str){ $result['c']=0; 
 $md5=md5($str); $kmd5=substr($md5,0,3);
 
 $tkey=DBselectSDB("SHOW TABLES LIKE 'str_$kmd5';",'seek_engSTR'); 	
@@ -97,6 +97,7 @@ DBUpInsSDB("CREATE TABLE `str_$kmd5` (
 $res=DBselectSDB("SELECT cache from str_$kmd5 WHERE md5='$md5' AND idp=$idp;",'seek_engSTR'); 	
 if(array_key_exists(1, $res)){$result['c']=1; $result['cache']=$res[1]['cache'];}	
 }
+
 
 return $result;	
 }
@@ -478,14 +479,49 @@ $idp=$v['where']['idp'];
 
 ######### si esta cacheado aqui debo recuperar de la cache
 #####  $v['where']['cats_inf_otras'] , $listcur, $v['palmatch']
-$resC=3;
-if($v['debugIN']>0){$resC=3;}
-$cache=search_STR($idp,$str);
-if($cache['c']==3){
+
+if($v['debugIN']>0){$v['where']['cacheQ']=0;}
+
+if($v['where']['cacheQ']>0){
+
+$cache=search_STR($idp,$str); 
+if($cache['c']==1){
 $dvals=json_decode($cache['cache'],TRUE);	
 }else{
 $dvals=engine_CAT($idc,$str,$idp);
 insert_STR($idp,$idc,$str,json_encode($dvals));
+}
+
+}else{
+$dvals=engine_CAT($idc,$str,$idp);	
+}
+
+
+
+$listcur=$dvals['listcur'];
+$v['where']['cats_inf_otras']=$dvals['mtem'];
+$v['palmatch']=$dvals['pmatch'];
+$pesos=$dvals['pesos'];
+
+
+return $listcur;	
+	
+}
+
+
+
+function getCURtotQUERY($str,$idp){global $v; global $pesos;
+
+######### si esta cacheado aqui debo recuperar de la cache
+#####  $v['where']['cats_inf_otras'] , $listcur, $v['palmatch']
+
+if($v['debugIN']>0){$v['where']['cacheQ']=0;}
+$cache=search_STR($idp,$str);
+if(($cache['c']==1)&&($v['where']['cacheQ']>0)){
+$dvals=json_decode($cache['cache'],TRUE);	
+}else{ 
+$dvals=engine_CAT(0,$str,$idp);
+insert_STR($idp,0,$str,json_encode($dvals));
 }
 
 
@@ -505,6 +541,15 @@ return $listcur;
 
 
 
+
+
+
+
+
+
+
+
+
 function engine_CAT($idc,$str,$idp){
 global $v; global $pesos; global $ctinf;	
 
@@ -515,8 +560,9 @@ $str=addPalstoSTR($idc,$str,$idp); ### añado mas pals a str
 $listcurA=array();
 
 		###############################  sacadas de engine
-				
+		
 		$listcurA=searchCUR($str,$idp,0,$idc); //busco str definitivo 
+		
 		if(!is_array($listcurA)){$listcurA=array();};
 
 	 
@@ -524,19 +570,20 @@ $listcurA=array();
 		###################################################
 		
 		############ añado categorizadas ???? necesario ????
-		
+		if($idc>0){
 		$listcurB=explode(',',trim(getCURScategorizados($idc))); 
 		foreach ($listcurB as $ii => $idcc) {
 			if(array_key_exists($idcc, $listcurA)){$listcurA[$idcc]=$listcurA[$idcc]+300;}else{$listcurA[$idcc]=300;}	
 		$minp=$listcurA[$idcc];
-		}
+		}}else{$minp=20;}
 		#####################################
 
 		//$limite=$maxP; 
 		//if($limite>300){$limite=80;}
 		//if($limite<0){$limite=10;}
-		$limite=$v['conf']['limitENGINE'];
 		
+		$limite=$v['conf']['limitENGINE'];
+		if($idc==0){$limite=20;};
 																					if($v['debugIN']>0){
 																					$v['dbi'].=  "<br>$minp - $maxP -> limite:$limite";	
 																					}
@@ -875,6 +922,7 @@ foreach ($bus['w'] as $numpals => $pals) {foreach ($pals as $keywd => $pes){
 	$keywd=utf8_encode($keywd);
 	$keyw=base_convert(md5($keywd),16,11); $subKeyw=substr("$keyw",0,3);		
 	
+	
 	$dcu=DBselectSDB("SELECT t_id, peso from md5_$subKeyw WHERE md5='$keyw' AND idp=$idp AND tipo=2 GROUP BY t_id;",'seek_engine_' . $numpals); 
 	if(count($dcu)>0){foreach($dcu as $kk => $datos ){$id=$datos['t_id']; $peso=$datos['peso']*($numpals/2); 
 		if(array_key_exists($id, $res)){$res[$id]=$res[$id]+$peso;}else{$res[$id]=$peso;}
@@ -917,7 +965,6 @@ if(array_key_exists(1, $dcuNO)){
 }
 #################################
 }}
-
 
 
 					######## parte a revisar
