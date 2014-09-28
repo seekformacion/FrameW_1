@@ -3,7 +3,10 @@
 
 
 ################## funcion apertura de archivos ##########
-function read_layout($donde){ 
+function read_layout($donde){
+
+//echo "\n ________________________ \n ___ " . $donde . "____ \n ________________________ \n";
+	 
 $fp = fopen($donde, "r");
 if($fp){while(!feof($fp)){$lineas[]= fgets($fp);};	fclose($fp);};	
 return $lineas;	
