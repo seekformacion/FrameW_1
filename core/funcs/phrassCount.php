@@ -83,12 +83,14 @@ $md5=md5($str); $kmd5=substr($md5,0,3);
 
 $tkey=DBselectSDB("SHOW TABLES LIKE 'str_$kmd5';",'seek_engSTR'); 	
 if(!array_key_exists(1, $tkey)){
-DBUpInsSDB("CREATE TABLE `str_$kmd5` (                                    
+DBUpInsSDB("CREATE TABLE `str_$kmd5` (
+		   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,                                    
            `md5` varchar(255) NOT NULL,                              
            `idp` int(10) DEFAULT NULL,                               
            `id_cat` bigint(255) DEFAULT NULL,                        
            `cache` text CHARACTER SET utf8 COLLATE utf8_spanish_ci,  
-           PRIMARY KEY (`md5`),                                      
+           PRIMARY KEY (`id`),
+           KEY (`md5`),                                      
            KEY `idp` (`idp`)                                         
          ) ENGINE=InnoDB DEFAULT CHARSET=latin1;",'seek_engSTR');	
 
@@ -111,12 +113,14 @@ $md5=md5($str); $kmd5=substr($md5,0,3); $ldate=(date('Y') . date('m') . date('d'
 //echo "SHOW TABLES LIKE 'md5_$keyT';";
 $tkey=DBselectSDB("SHOW TABLES LIKE 'str_$kmd5';",'seek_engSTR'); 	
 if(!array_key_exists(1, $tkey)){
-DBUpInsSDB("CREATE TABLE `str_$kmd5` (                                    
+DBUpInsSDB("CREATE TABLE `str_$kmd5` (
+		   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,                                    
            `md5` varchar(255) NOT NULL,                              
            `idp` int(10) DEFAULT NULL,                               
            `id_cat` bigint(255) DEFAULT NULL,                        
            `cache` text CHARACTER SET utf8 COLLATE utf8_spanish_ci,  
-           PRIMARY KEY (`md5`),                                      
+           PRIMARY KEY (`id`),
+           KEY (`md5`),                                      
            KEY `idp` (`idp`)                                         
          ) ENGINE=InnoDB DEFAULT CHARSET=latin1;",'seek_engSTR');	
 }
