@@ -111,7 +111,7 @@ function insert_STR($idp,$idc,$str,$cache){
 $md5=md5($str); $kmd5=substr($md5,0,3); $ldate=(date('Y') . date('m') . date('d') . date('H') . date('i') . date('s'))*1;
 
 
-$cache=utf8_encode($cache);
+//$cache=utf8_encode($cache);
 
 ##### creo tabla si no existe
 ###	
@@ -498,6 +498,7 @@ if($cache['c']==1){
 $dvals=json_decode($cache['cache'],TRUE);	
 }else{
 $dvals=engine_CAT($idc,$str,$idp);
+print_r($dvals);
 insert_STR($idp,$idc,$str,json_encode($dvals));
 }
 
