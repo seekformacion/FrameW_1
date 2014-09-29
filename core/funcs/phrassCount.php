@@ -99,7 +99,7 @@ DBUpInsSDB("CREATE TABLE `str_$kmd5` (
 
 }else{
 $res=DBselectSDB("SELECT cache from str_$kmd5 WHERE md5='$md5' AND idp=$idp;",'seek_engSTR'); 	
-if(array_key_exists(1, $res)){$result['c']=1; $result['cache']=$res[1]['cache'];}	
+if(array_key_exists(1, $res)){$result['c']=1; $result['cache']=utf8_decode($res[1]['cache']);}	
 }
 
 
