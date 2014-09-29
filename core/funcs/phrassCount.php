@@ -498,14 +498,13 @@ if($cache['c']==1){
 $dvals=utf8_decode_all(json_decode($cache['cache'],TRUE));	
 }else{
 $dvals=engine_CAT($idc,$str,$idp);
-$dvals=utf8_decode_all($dvals);
+$dvals=utf8_encode_all($dvals);
 insert_STR($idp,$idc,$str,json_encode($dvals));
 }
 
 }else{
 $dvals=engine_CAT($idc,$str,$idp);	
 }
-
 
 
 $listcur=$dvals['listcur'];
