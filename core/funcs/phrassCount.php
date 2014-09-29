@@ -498,7 +498,7 @@ if($cache['c']==1){
 $dvals=utf8_decode_all(json_decode($cache['cache'],TRUE));	
 }else{
 $dvals=engine_CAT($idc,$str,$idp);
-
+$dvals=utf8_encode_all($dvals);
 insert_STR($idp,$idc,$str,json_encode($dvals));
 }
 
@@ -518,6 +518,16 @@ return $listcur;
 	
 }
 
+
+
+function utf8_encode_all($dat) // -- It returns $dat decoded from UTF8 
+{ 
+  if (is_string($dat)) return utf8_encode($dat); 
+  if (!is_array($dat)) return $dat; 
+  $ret = array(); 
+  foreach($dat as $i=>$d) $ret[$i] = utf8_encode_all($d); 
+  return $ret; 
+} 
 
 
 
