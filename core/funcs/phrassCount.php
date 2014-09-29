@@ -81,27 +81,8 @@ $nnpp++;
 function search_STR($idp,$str){ $result['c']=0; 
 $md5=md5($str); $kmd5=substr($md5,0,3);
 
-$tkey=DBselectSDB("SHOW TABLES LIKE 'str_$kmd5';",'seek_engSTR'); 	
-if(!array_key_exists(1, $tkey)){
-	
-/*	
-DBUpInsSDB("CREATE TABLE `str_$kmd5` (
-		   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,                                    
-           `md5` varchar(255) NOT NULL,                              
-           `idp` int(10) DEFAULT NULL,                               
-           `id_cat` bigint(255) DEFAULT NULL,                        
-           `cache` text CHARACTER SET utf8 COLLATE utf8_spanish_ci,  
-           PRIMARY KEY (`id`),
-           KEY (`md5`),                                      
-           KEY `idp` (`idp`)                                         
-         ) ENGINE=InnoDB DEFAULT CHARSET=latin1;",'seek_engSTR');	
-*/
-
-}else{
 $res=DBselectSDB("SELECT cache from str_$kmd5 WHERE md5='$md5' AND idp=$idp;",'seek_engSTR'); 	
 if(array_key_exists(1, $res)){$result['c']=1; $result['cache']=$res[1]['cache'];}	
-}
-
 
 return $result;	
 }
