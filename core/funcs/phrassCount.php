@@ -495,7 +495,7 @@ if($v['where']['cacheQ']>0){
 
 $cache=search_STR($idp,$str); 
 if($cache['c']==1){
-$dvals=html_entity_decode(json_decode($cache['cache'],TRUE));	
+$dvals=html_decode_all(json_decode($cache['cache'],TRUE));	
 }else{
 $dvals=engine_CAT($idc,$str,$idp);
 insert_STR($idp,$idc,$str,json_encode($dvals));
@@ -529,12 +529,12 @@ function utf8_encode_all($dat) // -- It returns $dat decoded from UTF8
 
 
 
-function utf8_decode_all($dat) // -- It returns $dat decoded from UTF8 
+function html_decode_all($dat) // -- It returns $dat decoded from UTF8 
 { 
-  if (is_string($dat)) return utf8_decode($dat); 
+  if (is_string($dat)) return html_entity_decode($dat); 
   if (!is_array($dat)) return $dat; 
   $ret = array(); 
-  foreach($dat as $i=>$d) $ret[$i] = utf8_decode_all($d); 
+  foreach($dat as $i=>$d) $ret[$i] = html_decode_all($d); 
   return $ret; 
 } 
 
