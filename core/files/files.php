@@ -82,6 +82,9 @@ $doit=1;
 
 
 function LOCALwFILE($donde,$content){
+
+echo $donde;	
+	
 $fp = fopen($donde, "w");
 fwrite($fp, $content); fclose($fp);	
 }
