@@ -99,7 +99,7 @@ DBUpInsSDB("CREATE TABLE `str_$kmd5` (
 
 }else{
 $res=DBselectSDB("SELECT cache from str_$kmd5 WHERE md5='$md5' AND idp=$idp;",'seek_engSTR'); 	
-if(array_key_exists(1, $res)){$result['c']=1; $result['cache']=utf8_decode($res[1]['cache']);}	
+if(array_key_exists(1, $res)){$result['c']=1; $result['cache']=$res[1]['cache'];}	
 }
 
 
@@ -109,6 +109,9 @@ return $result;
 
 function insert_STR($idp,$idc,$str,$cache){
 $md5=md5($str); $kmd5=substr($md5,0,3); $ldate=(date('Y') . date('m') . date('d') . date('H') . date('i') . date('s'))*1;
+
+
+$cache=utf8_encode($cache);
 
 ##### creo tabla si no existe
 ###	
