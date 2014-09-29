@@ -498,7 +498,7 @@ if($cache['c']==1){
 $dvals=json_decode($cache['cache'],TRUE);	
 }else{
 $dvals=engine_CAT($idc,$str,$idp);
-insert_STR($idp,$idc,$str,json_encode($dvals, JSON_UNESCAPED_UNICODE));
+insert_STR($idp,$idc,$str,json_encode($dvals));
 }
 
 }else{
