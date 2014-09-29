@@ -88,14 +88,12 @@ return $code;
 }
 
 
-function create_new_user(){
+function create_new_user($ante){
 
 $ip=getRealIp();
 $seekforID=strtoupper(getUniqueCode(10));
 
-if (isset($_COOKIE["seekforReferal"])){
-$ante= $_COOKIE["seekforReferal"];
-}else{$ante="";}
+
 
 $res=DBUpIns("INSERT INTO skv_user_sessions (seekforID, ip, referer) values ('$seekforID', '$ip','$ante');");
 
