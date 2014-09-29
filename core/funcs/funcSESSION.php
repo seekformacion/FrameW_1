@@ -88,14 +88,14 @@ return $code;
 }
 
 
-function create_new_user($ante){
+function create_new_user(){
 
 $ip=getRealIp();
 $seekforID=strtoupper(getUniqueCode(10));
 
 
 
-$res=DBUpIns("INSERT INTO skv_user_sessions (seekforID, ip, referer) values ('$seekforID', '$ip','$ante');");
+$res=DBUpIns("INSERT INTO skv_user_sessions (seekforID, ip) values ('$seekforID', '$ip');");
 
 return $seekforID;# . "_" . geo_ip(getRealIpAddr());
 
