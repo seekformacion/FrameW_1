@@ -120,7 +120,7 @@ DBUpInsSDB("CREATE TABLE `str_$kmd5` (
            `md5` varchar(255) NOT NULL,                              
            `idp` int(10) DEFAULT NULL,                               
            `id_cat` bigint(255) DEFAULT NULL,                        
-           `cache` text CHARACTER SET utf8 COLLATE utf8_spanish_ci,  
+           `cache` text,  
            PRIMARY KEY (`id`),
            KEY (`md5`),                                      
            KEY `idp` (`idp`)                                         
