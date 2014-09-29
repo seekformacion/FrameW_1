@@ -114,7 +114,7 @@ $md5=md5($str); $kmd5=substr($md5,0,3); $ldate=(date('Y') . date('m') . date('d'
 ###	
 //echo "SHOW TABLES LIKE 'md5_$keyT';";
 $tkey=DBselectSDB("SHOW TABLES LIKE 'str_$kmd5';",'seek_engSTR'); 	
-if(!array_key_exists(1, $tkey)){
+if(count($tkey)==0){echo "creo";
 DBUpInsSDB("CREATE TABLE `str_$kmd5` (
 		   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,                                    
            `md5` varchar(255) NOT NULL,                              
