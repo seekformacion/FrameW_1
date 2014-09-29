@@ -495,10 +495,10 @@ if($v['where']['cacheQ']>0){
 
 $cache=search_STR($idp,$str); 
 if($cache['c']==1){
-$dvals=html_decode_all(json_decode($cache['cache'],TRUE));	
+$dvals=json_decode($cache['cache'],TRUE);	
 }else{
 $dvals=engine_CAT($idc,$str,$idp);
-insert_STR($idp,$idc,$str,json_encode($dvals));
+insert_STR($idp,$idc,$str,json_encode($dvals, JSON_UNESCAPED_UNICODE));
 }
 
 }else{
