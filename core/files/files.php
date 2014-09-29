@@ -39,6 +39,7 @@ return $lineas;
 function write_FILE($donde,$content){global $v;
 $doit=0;
 
+echo $donde;
 if(file_exists($donde)){
 	
 	if(md5_file($donde)!=md5($content)){$doit=1;}	
