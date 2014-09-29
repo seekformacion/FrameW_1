@@ -495,7 +495,7 @@ if($v['where']['cacheQ']>0){
 
 $cache=search_STR($idp,$str); 
 if($cache['c']==1){
-$dvals=utf8_decode_all(json_decode($cache['cache'],TRUE));	
+$dvals=html_entity_decode(json_decode($cache['cache'],TRUE));	
 }else{
 $dvals=engine_CAT($idc,$str,$idp);
 insert_STR($idp,$idc,$str,json_encode($dvals));
