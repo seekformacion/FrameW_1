@@ -495,7 +495,7 @@ if($v['where']['cacheQ']>0){
 
 $cache=search_STR($idp,$str); 
 if($cache['c']==1){
-$dvals=json_decode($cache['cache'],TRUE);	
+$dvals=utf8_decode_all(json_decode($cache['cache'],TRUE));	
 }else{
 $dvals=engine_CAT($idc,$str,$idp);
 
@@ -517,6 +517,18 @@ $pesos=$dvals['pesos'];
 return $listcur;	
 	
 }
+
+
+
+
+function utf8_decode_all($dat) // -- It returns $dat decoded from UTF8 
+{ 
+  if (is_string($dat)) return utf8_decode($dat); 
+  if (!is_array($dat)) return $dat; 
+  $ret = array(); 
+  foreach($dat as $i=>$d) $ret[$i] = utf8_decode_all($d); 
+  return $ret; 
+} 
 
 
 
