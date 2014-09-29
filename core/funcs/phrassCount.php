@@ -495,7 +495,7 @@ if($v['where']['cacheQ']>0){
 
 $cache=search_STR($idp,$str); 
 if($cache['c']==1){
-$dvals=json_decode($cache['cache'],TRUE);	
+$dvals=utf8_decode_all(json_decode($cache['cache'],TRUE));	
 }else{
 $dvals=engine_CAT($idc,$str,$idp);
 $dvals=utf8_decode_all($dvals);
