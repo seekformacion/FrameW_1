@@ -154,8 +154,14 @@ DBUpInsSDB("INSERT INTO cache_str (str,idp,id_cat,ldate) VALUES ('$str',$idp,$id
 
 
 
-function processCUR($idcur){$categoria="";$nombre="";$idp="";
+function processCUR($idcur){
+$categoria="";$nombre="";$idp="";$show=0;
 
+
+$nue=DBselectSDB("SELECT showC FROM skP_cursos WHERE id=$idcur;",'seekpanel');
+if(count($nue)>0){$show=$nue[1]['showC'];
+
+if($show){
 
 $dcur=DBselect("select nombre, cur_descripcion, 
 cur_dirigidoa, cur_paraqueteprepara, temario, 
@@ -219,7 +225,7 @@ $r="";
 }
 
 return $r;	
-}
+}}
 
 
 function insertKEY($pals,$idp,$tipo,$idins){$prev=0;global $v;
