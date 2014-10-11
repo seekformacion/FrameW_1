@@ -159,7 +159,7 @@ $categoria="";$nombre="";$idp="";$show=0;
 
 
 $nue=DBselectSDB("SELECT showC FROM skP_cursos WHERE id=$idcur;",'seekpanel');
-if(count($nue)>0){$show=$nue[1]['showC'];
+if(count($nue)>0){$show=$nue[1]['showC'];}
 
 if($show){
 
