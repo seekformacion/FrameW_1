@@ -80,9 +80,7 @@ global $v;$resultados=array();
 
 $dbnivel=new DB($v['conf']['host'],$v['conf']['usr'],$v['conf']['pass'],$v['conf']['db']);
 
-    var_dump($dbnivel);
-
-    if (!$dbnivel->open()){die($dbnivel->error());};
+if (!$dbnivel->open()){die($dbnivel->error());};
 
 
 
