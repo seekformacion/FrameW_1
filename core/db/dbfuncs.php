@@ -79,7 +79,11 @@ function DBUpIns($queryp){
 global $v;$resultados=array();
 
 $dbnivel=new DB($v['conf']['host'],$v['conf']['usr'],$v['conf']['pass'],$v['conf']['db']);
-if (!$dbnivel->open()){die($dbnivel->error());};
+
+    var_dump($dbnivel);
+
+    if (!$dbnivel->open()){die($dbnivel->error());};
+
 
 
 $dbnivel->query($queryp);
