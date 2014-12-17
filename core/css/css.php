@@ -35,11 +35,14 @@ $v['dataCSSfinal']['all'][$nomfFinal]['stlname']="";
 
 	
 	
-$nomfFinal="";$html="";	
+$nomfFinal="";$html="";
+
+if(isset($v['dataCSS']['A'])){
 foreach ($v['dataCSS']['A'] as $nomfile => $valores) {
 $nomfFinal .=$valores['path'] . $nomfile;	
 $html .=$valores['html'];	
-}
+}}
+
 $nomfFinal=md5($nomfFinal);$stl=$nomfFinal;
 $v['dataCSSfinal']['A'][$nomfFinal]['path']="/A";#$v['path']['c_css'] . "/A";
 $v['dataCSSfinal']['A'][$nomfFinal]['html']=$html;
@@ -48,11 +51,14 @@ $v['dataCSSfinal']['A'][$nomfFinal]['stlname']=$stl;
 
 
 $nomfFinal="";$html="";
-foreach ($v['dataCSS']['B'] as $nomfile => $valores) {
+
+    if(isset($v['dataCSS']['B'])){
+        foreach ($v['dataCSS']['B'] as $nomfile => $valores) {
 $nomfFinal .=$valores['path'] . $nomfile;	
 $html .=$valores['html'];	
-}
-$nomfFinal=md5($nomfFinal);
+}}
+
+    $nomfFinal=md5($nomfFinal);
 $v['dataCSSfinal']['B'][$nomfFinal]['path']="/B";#$v['path']['c_css'] . "/B";
 $v['dataCSSfinal']['B'][$nomfFinal]['html']=$html;
 $v['dataCSSfinal']['B'][$nomfFinal]['stl']=0;
